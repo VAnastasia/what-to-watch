@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анастасия Васинская](https://up.htmlacademy.ru/react/3/user/811447).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Колодько](https://htmlacademy.ru/profile/id109264).
 
 ---
 
