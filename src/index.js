@@ -25,7 +25,8 @@ const films = [
   `War of the Worlds`,
   `Dardjeeling Limited`,
   `Orlando`, `Mindhunter`,
-  `Midnight Special`];
+  `Midnight Special`
+];
 
 ReactDOM.render(
     <App promoFilm={promoFilm} films={films} />,
