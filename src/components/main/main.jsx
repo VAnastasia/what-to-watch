@@ -1,11 +1,8 @@
 import React, {Fragment} from "react";
 import propTypes from "prop-types";
 
-
 const Main = ({promoFilm, films}) => {
-
   const {title, genre, year} = promoFilm;
-
   return (
     <Fragment>
       <section className="movie-card">
