@@ -2,8 +2,16 @@ import React from "react";
 import Main from "../main/main.jsx";
 import propTypes from "prop-types";
 
+const titleClickHandler = () => {};
+
 const App = ({promoFilm, films}) => {
-  return <Main promoFilm={promoFilm} films={films} />;
+  return (
+    <Main
+      promoFilm={promoFilm}
+      films={films}
+      onTitleClick={titleClickHandler}
+    />
+  );
 };
 
 App.propTypes = {
