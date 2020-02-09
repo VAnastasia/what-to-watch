@@ -1,7 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./components/app/app.jsx";
-
 const promoFilm = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
@@ -31,7 +27,4 @@ const films = [
   `Midnight Special`
 ];
 
-ReactDOM.render(
-    <App promoFilm={promoFilm} films={films} />,
-    document.getElementById(`root`)
-);
+export {promoFilm, films};
