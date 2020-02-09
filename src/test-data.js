@@ -11,16 +11,19 @@ const films = [
   `Aviator`,
   `We need to talk about Kevin`,
   `What We Do in the Shadows`,
-  `Revenant`, `Johnny English`,
+  `Revenant`,
+  `Johnny English`,
   `Shutter Island`,
   `Pulp Fiction`,
   `No Country for Old Men`,
-  `Snatch`, `Moonrise Kingdom`,
+  `Snatch`,
+  `Moonrise Kingdom`,
   `Seven Years in Tibet`,
   `Midnight Special`,
   `War of the Worlds`,
   `Dardjeeling Limited`,
-  `Orlando`, `Mindhunter`,
+  `Orlando`,
+  `Mindhunter`,
   `Midnight Special`
 ];
 

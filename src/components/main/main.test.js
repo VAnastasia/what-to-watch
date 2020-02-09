@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
-import {promoFilm, films} from "../../testData";
+import {promoFilm, films} from "../../test-data";
 
 it(`Should WelcomeScreen render correctly`, () => {
   const tree = renderer
