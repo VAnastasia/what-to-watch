@@ -1,9 +1,3 @@
-const promoFilm = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  year: 2014
-};
-
 const films = [
   {
     id: 1,
@@ -32,10 +26,4 @@ const films = [
   }
 ];
 
-const film = {
-  id: 1,
-  title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-};
-
-export {promoFilm, films, film};
+export default films;
