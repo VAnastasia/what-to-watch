@@ -6,7 +6,6 @@ exports[`Should WelcomeScreen render correctly 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
-    data-id={1}
     onMouseOver={[Function]}
   >
     <div
@@ -32,7 +31,6 @@ exports[`Should WelcomeScreen render correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    data-id={2}
     onMouseOver={[Function]}
   >
     <div
@@ -58,7 +56,6 @@ exports[`Should WelcomeScreen render correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    data-id={3}
     onMouseOver={[Function]}
   >
     <div
@@ -84,7 +81,6 @@ exports[`Should WelcomeScreen render correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    data-id={4}
     onMouseOver={[Function]}
   >
     <div
@@ -110,7 +106,6 @@ exports[`Should WelcomeScreen render correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    data-id={5}
     onMouseOver={[Function]}
   >
     <div

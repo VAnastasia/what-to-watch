@@ -3,8 +3,6 @@
 exports[`Should WelcomeScreen render correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  data-id={1}
-  onMouseOver={[Function]}
 >
   <div
     className="small-movie-card__image"

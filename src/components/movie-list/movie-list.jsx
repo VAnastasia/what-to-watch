@@ -12,11 +12,13 @@ class MovieList extends PureComponent {
     };
   }
 
-  handleCardHover(evt) {
-    evt.preventDefault();
-    this.setState({
-      activeCard: evt.target.parentNode.dataset.id,
-    });
+  handleCardHover(id) {
+    return (evt) => {
+      evt.preventDefault();
+      this.setState({
+        activeCard: id,
+      });
+    };
   }
 
   render() {

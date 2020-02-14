@@ -5,9 +5,8 @@ const MovieCard = ({film, onHover}) => {
   const {id, title, image} = film;
   return (
     <article
-      data-id={id}
       className="small-movie-card catalog__movies-card"
-      onMouseOver={onHover}
+      onMouseOver={onHover(id)}
     >
       <div className="small-movie-card__image">
         <img src={image} alt={title} width="280" height="175" />
