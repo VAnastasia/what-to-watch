@@ -30,4 +30,8 @@ const defineLevelFilm = (rating) => {
   return ``;
 };
 
-export {defineLevelFilm};
+const fixNumber = (number, decimalPoint) => {
+  return number.toFixed(decimalPoint);
+};
+
+export {defineLevelFilm, fixNumber};

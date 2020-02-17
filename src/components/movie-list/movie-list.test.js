@@ -3,10 +3,11 @@ import renderer from "react-test-renderer";
 import MovieList from "./movie-list.jsx";
 import {films} from "../../test-data";
 
-it(`Should WelcomeScreen render correctly`, () => {
+it(`Should MovieList render correctly`, () => {
   const tree = renderer
     .create(<MovieList
       films={films}
+      onClick={() => {}}
     />)
     .toJSON();
 

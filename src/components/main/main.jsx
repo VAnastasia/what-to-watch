@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import propTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 
-const Main = ({promoFilm, films}) => {
+const Main = ({promoFilm, films, onClick}) => {
   const {title, genre, year} = promoFilm;
   return (
     <Fragment>
@@ -98,7 +98,7 @@ const Main = ({promoFilm, films}) => {
             </li>
           </ul>
 
-          <MovieList films={films} />
+          <MovieList films={films} onClick={onClick} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -134,6 +134,7 @@ Main.propTypes = {
     genre: propTypes.string,
     year: propTypes.number,
   }).isRequired,
+  onClick: propTypes.func.isRequired,
 };
 
 export default Main;

@@ -1,26 +1,62 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import propTypes from "prop-types";
 
-const App = ({promoFilm, films, film}) => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Main
-            promoFilm={promoFilm}
-            films={films}
-          />
-        </Route>
-        <Route exact path="/films">
-          <MoviePage film={film} />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-};
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+
+    this.state = {
+      filmDetails: false,
+    };
+  }
+
+  handleClick() {
+    this.setState({
+      filmDetails: true,
+    });
+  }
+
+  _renderMainScreen() {
+    const {promoFilm, films, film} = this.props;
+    const {filmDetails} = this.state;
+
+    if (!filmDetails) {
+      return (
+        <Main
+          promoFilm={promoFilm}
+          films={films}
+          onClick={this.handleClick}
+        />
+      );
+    }
+
+    if (filmDetails) {
+      return <MoviePage film={film} />;
+    }
+
+    return null;
+  }
+
+  render() {
+    const {film} = this.props;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderMainScreen()}
+          </Route>
+          <Route exact path="/films">
+            <MoviePage film={film} />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 App.propTypes = {
   films: propTypes.arrayOf(propTypes.shape({
