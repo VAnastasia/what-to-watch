@@ -1,14 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieCard from "./movie-card.jsx";
+import MoviePage from "./movie-page.jsx";
 import {film} from "../../test-data";
 
-it(`Should MovieCard render correctly`, () => {
+it(`Should MoviePage render correctly`, () => {
   const tree = renderer
-    .create(<MovieCard
+    .create(<MoviePage
       film={film}
-      onHover={() => {}}
-      onClick={() => {}}
     />)
     .toJSON();
 

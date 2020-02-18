@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should WelcomeScreen render correctly 1`] = `
+exports[`Should MovieList render correctly 1`] = `
 <div
   className="catalog__movies-list"
 >
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -23,7 +24,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/"
       >
         Fantastic Beasts: The Crimes of Grindelwald
       </a>
@@ -31,6 +32,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -48,7 +50,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/"
       >
         Bohemian Rhapsody
       </a>
@@ -56,6 +58,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -73,7 +76,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/"
       >
         Macbeth
       </a>
@@ -81,6 +84,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -98,7 +102,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/"
       >
         Aviator
       </a>
@@ -106,6 +110,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -123,7 +128,7 @@ exports[`Should WelcomeScreen render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/"
       >
         We need to talk about Kevin
       </a>

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 import films from "./mocks/films";
+import filmDetails from "./mocks/film-details";
 
 const promoFilm = {
   title: `The Grand Budapest Hotel`,
@@ -33,6 +34,6 @@ const promoFilm = {
 // ];
 
 ReactDOM.render(
-    <App promoFilm={promoFilm} films={films} />,
+    <App promoFilm={promoFilm} films={films} film={filmDetails} />,
     document.getElementById(`root`)
 );
