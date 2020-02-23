@@ -4,14 +4,16 @@ exports[`Should MovieCard render correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   onClick={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="The Grand Budapest Hotel"
+    <video
+      alt=""
       height="175"
-      src="img/bg-the-grand-budapest-hotel.jpg"
+      poster="img/bg-the-grand-budapest-hotel.jpg"
+      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
       width="280"
     />
   </div>

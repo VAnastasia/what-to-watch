@@ -8,8 +8,15 @@ it(`Should MovieCard render correctly`, () => {
     .create(<MovieCard
       film={film}
       onHover={() => {}}
+      onLeave={() => {}}
       onClick={() => {}}
-    />)
+      activeCard={film.id}
+    />,
+    {
+      createNodeMock: () => {
+        return {};
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

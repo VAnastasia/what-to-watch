@@ -7,7 +7,12 @@ it(`Should MoviePage render correctly`, () => {
   const tree = renderer
     .create(<MoviePage
       film={film}
-    />)
+    />,
+    {
+      createNodeMock: () => {
+        return {};
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();
