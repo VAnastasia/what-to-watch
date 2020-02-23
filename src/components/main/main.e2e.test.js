@@ -9,12 +9,12 @@ Enzyme.configure({
 });
 
 it(`Should title be clicked`, () => {
-  const onTitleClick = jest.fn();
+  const onClick = jest.fn();
   const main = shallow(
       <Main
         promoFilm={promoFilm}
         films={films}
-        onTitleClick={onTitleClick}
+        onClick={onClick}
       />
   );
 
@@ -23,5 +23,5 @@ it(`Should title be clicked`, () => {
   titlesFilm.forEach((title) => {
     title.props().onClick();
   });
-  expect(onTitleClick).toHaveBeenCalledTimes(titlesFilm.length);
+  expect(onClick).toHaveBeenCalledTimes(titlesFilm.length);
 });
