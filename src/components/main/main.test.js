@@ -9,7 +9,12 @@ it(`Should MainScreen render correctly`, () => {
       promoFilm={promoFilm}
       films={films}
       onClick={() => {}}
-    />)
+    />,
+    {
+      createNodeMock: () => {
+        return {};
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

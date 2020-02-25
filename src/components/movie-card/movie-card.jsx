@@ -1,16 +1,22 @@
 import React from "react";
 import propTypes from "prop-types";
+import VideoPlayer from "../video-player/video-player.jsx";
 
-const MovieCard = ({film, onHover, onClick}) => {
-  const {id, title, image} = film;
+const MovieCard = ({film, onHover, onLeave, onClick, activeCard}) => {
+  const {id, title, image, video} = film;
   return (
     <article
       className="small-movie-card catalog__movies-card"
       onMouseOver={onHover(id)}
+      onMouseLeave={onLeave}
       onClick={onClick}
     >
       <div className="small-movie-card__image">
-        <img src={image} alt={title} width="280" height="175" />
+        <VideoPlayer
+          videoSrc={video}
+          posterSrc={image}
+          isPlaying={activeCard === id}
+        />
       </div>
       <h3 className="small-movie-card__title">
         <a
@@ -27,9 +33,12 @@ MovieCard.propTypes = {
     id: propTypes.number.isRequired,
     title: propTypes.string.isRequired,
     image: propTypes.string.isRequired,
+    video: propTypes.string.isRequired,
   }).isRequired,
   onHover: propTypes.func.isRequired,
   onClick: propTypes.func.isRequired,
+  onLeave: propTypes.func.isRequired,
+  activeCard: propTypes.number.isRequired,
 };
 
 export default MovieCard;

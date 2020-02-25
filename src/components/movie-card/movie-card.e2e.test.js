@@ -16,6 +16,8 @@ it(`Should card be hover`, () => {
         film={film}
         onHover={onHover}
         onClick={() => {}}
+        onLeave={() => {}}
+        activeCard={1}
       />
   );
 
@@ -32,6 +34,8 @@ it(`Should card be click`, () => {
         film={film}
         onHover={() => {}}
         onClick={onClick}
+        onLeave={() => {}}
+        activeCard={1}
       />
   );
 
@@ -39,4 +43,3 @@ it(`Should card be click`, () => {
 
   expect(onClick.mock.calls.length).toBe(1);
 });
-

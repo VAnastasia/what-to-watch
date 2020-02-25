@@ -8,7 +8,12 @@ it(`Should MovieList render correctly`, () => {
     .create(<MovieList
       films={films}
       onClick={() => {}}
-    />)
+    />,
+    {
+      createNodeMock: () => {
+        return {};
+      }
+    })
     .toJSON();
 
   expect(tree).toMatchSnapshot();
