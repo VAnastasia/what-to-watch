@@ -32,6 +32,10 @@ class MovieList extends PureComponent {
     });
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   render() {
     const {films, onClick} = this.props;
     const {activeCard} = this.state;
