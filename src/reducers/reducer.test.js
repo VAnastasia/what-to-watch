@@ -1,4 +1,4 @@
-import {reducer, ActionType} from "./reducer.js";
+import {reducer, ActionTypes} from "./reducer.js";
 import {films} from "../test-data";
 
 const initialState = {
@@ -11,12 +11,15 @@ it(`Reducer without additional parameters should return initial state`, () => {
 });
 
 it(`Reducer should update current state by value`, () => {
-  expect(reducer(initialState, {type: ActionType.SET_MOVIES, payload: films})).toEqual({
+  expect(reducer(initialState, {type: ActionTypes.SET_MOVIES, payload: films})).toEqual({
     genre: `All genres`,
     movies: films,
   });
 
-  expect(reducer(initialState, {type: ActionType.CHANGE_GENRE, payload: `Dramas`})).toEqual({
+  expect(reducer({
+    genre: `All genres`,
+    movies: films,
+  }, {type: ActionTypes.CHANGE_GENRE, payload: `Dramas`})).toEqual({
     genre: `Dramas`,
     movies: films,
   });
