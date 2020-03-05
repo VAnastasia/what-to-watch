@@ -74,12 +74,6 @@ MovieList.propTypes = {
       propTypes.object.isRequired
   ).isRequired,
   activeGenre: propTypes.string.isRequired,
-  // films: propTypes.arrayOf(propTypes.shape({
-  //   id: propTypes.number.isRequired,
-  //   title: propTypes.string.isRequired,
-  //   image: propTypes.string.isRequired,
-  //   video: propTypes.string.isRequired,
-  // })).isRequired,
   onClick: propTypes.func.isRequired,
 };
 
@@ -88,4 +82,5 @@ const mapStateToProps = (state) => ({
   activeGenre: state.genre
 });
 
+export {MovieList};
 export default connect(mapStateToProps)(MovieList);

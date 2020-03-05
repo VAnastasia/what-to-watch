@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 
-const Main = ({promoFilm, films, onClick}) => {
+const Main = ({promoFilm, onClick}) => {
   const {title, genre, year} = promoFilm;
   return (
     <Fragment>
@@ -68,7 +68,7 @@ const Main = ({promoFilm, films, onClick}) => {
 
           <GenreList />
 
-          <MovieList films={films} onClick={onClick} />
+          <MovieList onClick={onClick} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -94,11 +94,6 @@ const Main = ({promoFilm, films, onClick}) => {
 };
 
 Main.propTypes = {
-  films: propTypes.arrayOf(propTypes.shape({
-    id: propTypes.number.isRequired,
-    title: propTypes.string.isRequired,
-    image: propTypes.string.isRequired,
-  })).isRequired,
   promoFilm: propTypes.exact({
     title: propTypes.string,
     genre: propTypes.string,
