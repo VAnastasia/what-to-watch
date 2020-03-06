@@ -1,0 +1,4 @@
+const MAX_COUNT_GENRES = 9;
+const GENRE_DEFAULT = `All genres`;
+
+export {MAX_COUNT_GENRES, GENRE_DEFAULT};

@@ -4,30 +4,35 @@ const films = [
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     image: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `Comedies`,
   },
   {
     id: 2,
     title: `Bohemian Rhapsody`,
     image: `img/bohemian-rhapsody.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `Crime`,
   },
   {
     id: 3,
     title: `Macbeth`,
     image: `img/macbeth.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `Documentary`,
   },
   {
     id: 4,
     title: `Aviator`,
     image: `img/aviator.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `Dramas`,
   },
   {
     id: 5,
     title: `We need to talk about Kevin`,
     image: `img/we-need-to-talk-about-kevin.jpg`,
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `Comedies`,
   }
 ];
 

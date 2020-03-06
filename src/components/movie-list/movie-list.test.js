@@ -1,12 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieList from "./movie-list.jsx";
+import {MovieList} from "./movie-list.jsx";
 import {films} from "../../test-data";
 
 it(`Should MovieList render correctly`, () => {
   const tree = renderer
     .create(<MovieList
-      films={films}
+      movies={films}
+      activeGenre={`All genres`}
       onClick={() => {}}
     />,
     {

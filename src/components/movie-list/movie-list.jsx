@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
+import {connect} from 'react-redux';
 import MovieCard from "../movie-card/movie-card.jsx";
+import {GENRE_DEFAULT} from "../../const";
 
 class MovieList extends PureComponent {
   constructor(props) {
@@ -36,9 +38,17 @@ class MovieList extends PureComponent {
     clearTimeout(this.timer);
   }
 
+  getFiltredMovies(movies, activeGenre) {
+    if (activeGenre !== GENRE_DEFAULT) {
+      return movies.slice().filter((movie) => movie.genre === activeGenre);
+    }
+    return movies;
+  }
+
   render() {
-    const {films, onClick} = this.props;
+    const {movies, activeGenre, onClick} = this.props;
     const {activeCard} = this.state;
+    const films = this.getFiltredMovies(movies, activeGenre);
 
     return (
       <div className="catalog__movies-list">
@@ -60,13 +70,17 @@ class MovieList extends PureComponent {
 }
 
 MovieList.propTypes = {
-  films: propTypes.arrayOf(propTypes.shape({
-    id: propTypes.number.isRequired,
-    title: propTypes.string.isRequired,
-    image: propTypes.string.isRequired,
-    video: propTypes.string.isRequired,
-  })).isRequired,
+  movies: propTypes.arrayOf(
+      propTypes.object.isRequired
+  ).isRequired,
+  activeGenre: propTypes.string.isRequired,
   onClick: propTypes.func.isRequired,
 };
 
-export default MovieList;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  activeGenre: state.genre
+});
+
+export {MovieList};
+export default connect(mapStateToProps)(MovieList);

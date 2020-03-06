@@ -34,4 +34,8 @@ const fixNumber = (number, decimalPoint) => {
   return number.toFixed(decimalPoint);
 };
 
-export {defineLevelFilm, fixNumber};
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+export {defineLevelFilm, fixNumber, extend};

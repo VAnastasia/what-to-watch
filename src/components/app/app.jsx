@@ -21,14 +21,13 @@ class App extends PureComponent {
   }
 
   _renderMainScreen() {
-    const {promoFilm, films, film} = this.props;
+    const {promoFilm, film} = this.props;
     const {filmDetails} = this.state;
 
     if (!filmDetails) {
       return (
         <Main
           promoFilm={promoFilm}
-          films={films}
           onClick={this.handleClick}
         />
       );
@@ -59,11 +58,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  films: propTypes.arrayOf(propTypes.shape({
-    id: propTypes.number.isRequired,
-    title: propTypes.string.isRequired,
-    image: propTypes.string.isRequired,
-  })).isRequired,
   promoFilm: propTypes.exact({
     title: propTypes.string,
     genre: propTypes.string,
