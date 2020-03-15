@@ -46,7 +46,7 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {movies, activeGenre, onClick} = this.props;
+    const {movies, activeGenre} = this.props;
     const {activeCard} = this.state;
     const films = this.getFiltredMovies(movies, activeGenre);
 
@@ -59,7 +59,6 @@ class MovieList extends PureComponent {
               film={film}
               onHover={this.handleCardHover}
               onLeave={this.handleCardOut}
-              onClick={onClick}
               activeCard={activeCard}
             />
           );
@@ -74,7 +73,6 @@ MovieList.propTypes = {
       propTypes.object.isRequired
   ).isRequired,
   activeGenre: propTypes.string.isRequired,
-  onClick: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

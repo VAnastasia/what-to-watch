@@ -18,7 +18,6 @@ it(`Should MainScreen render correctly`, () => {
         <Provider store={store}>
           <Main
             promoFilm={promoFilm}
-            onClick={() => {}}
           />
         </Provider>,
         {
