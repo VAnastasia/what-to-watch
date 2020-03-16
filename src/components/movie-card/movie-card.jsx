@@ -11,7 +11,7 @@ class Movie {
   }
 }
 
-const MovieCard = ({film, onHover, onLeave, onClick, activeCard}) => {
+const MovieCard = ({film, onHover, onLeave, activeCard}) => {
   const {id, title, image, video} = new Movie(film);
 
   return (
@@ -19,7 +19,6 @@ const MovieCard = ({film, onHover, onLeave, onClick, activeCard}) => {
       className="small-movie-card catalog__movies-card"
       onMouseOver={onHover(id)}
       onMouseLeave={onLeave}
-      onClick={onClick}
     >
       <div className="small-movie-card__image">
         <VideoPlayer
@@ -46,7 +45,6 @@ MovieCard.propTypes = {
     video: propTypes.string.isRequired,
   }).isRequired,
   onHover: propTypes.func.isRequired,
-  onClick: propTypes.func.isRequired,
   onLeave: propTypes.func.isRequired,
   activeCard: propTypes.number.isRequired,
 };

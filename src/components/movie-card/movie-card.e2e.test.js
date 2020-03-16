@@ -15,7 +15,6 @@ it(`Should card be hover`, () => {
       <MovieCard
         film={film}
         onHover={onHover}
-        onClick={() => {}}
         onLeave={() => {}}
         activeCard={1}
       />
@@ -26,20 +25,3 @@ it(`Should card be hover`, () => {
   expect(onHover.mock.calls.length).toBe(1);
 });
 
-it(`Should card be click`, () => {
-  const onClick = jest.fn();
-
-  const movieCard = shallow(
-      <MovieCard
-        film={film}
-        onHover={() => {}}
-        onClick={onClick}
-        onLeave={() => {}}
-        activeCard={1}
-      />
-  );
-
-  movieCard.simulate(`click`);
-
-  expect(onClick.mock.calls.length).toBe(1);
-});

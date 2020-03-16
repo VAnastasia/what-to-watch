@@ -2,54 +2,25 @@ import React, {PureComponent} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
 import propTypes from "prop-types";
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-
-    this.state = {
-      filmDetails: false,
-    };
-  }
-
-  handleClick() {
-    this.setState({
-      filmDetails: true,
-    });
-  }
-
-  _renderMainScreen() {
-    const {promoFilm, film} = this.props;
-    const {filmDetails} = this.state;
-
-    if (!filmDetails) {
-      return (
-        <Main
-          promoFilm={promoFilm}
-          onClick={this.handleClick}
-        />
-      );
-    }
-
-    if (filmDetails) {
-      return <MoviePage film={film} />;
-    }
-
-    return null;
-  }
-
   render() {
-    const {film} = this.props;
+    const {film, promoFilm} = this.props;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderMainScreen()}
+            <Main
+              promoFilm={promoFilm}
+            />
           </Route>
           <Route exact path="/films">
             <MoviePage film={film} />
+          </Route>
+          <Route exact path="/login">
+            <SignIn onSubmit={() => {}} />
           </Route>
         </Switch>
       </BrowserRouter>

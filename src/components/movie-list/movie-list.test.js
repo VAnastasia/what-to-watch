@@ -8,7 +8,6 @@ it(`Should MovieList render correctly`, () => {
     .create(<MovieList
       movies={films}
       activeGenre={`All genres`}
-      onClick={() => {}}
     />,
     {
       createNodeMock: () => {

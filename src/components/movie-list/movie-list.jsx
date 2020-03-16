@@ -2,6 +2,8 @@ import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
 import MovieCard from "../movie-card/movie-card.jsx";
+import {getGenre} from "../../reducers/app/selectors";
+import {getMovies} from "../../reducers/data/selectors";
 import {GENRE_DEFAULT} from "../../const";
 
 class MovieList extends PureComponent {
@@ -46,7 +48,7 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {movies, activeGenre, onClick} = this.props;
+    const {movies, activeGenre} = this.props;
     const {activeCard} = this.state;
     const films = this.getFiltredMovies(movies, activeGenre);
 
@@ -59,7 +61,6 @@ class MovieList extends PureComponent {
               film={film}
               onHover={this.handleCardHover}
               onLeave={this.handleCardOut}
-              onClick={onClick}
               activeCard={activeCard}
             />
           );
@@ -74,12 +75,11 @@ MovieList.propTypes = {
       propTypes.object.isRequired
   ).isRequired,
   activeGenre: propTypes.string.isRequired,
-  onClick: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  activeGenre: state.genre
+  movies: getMovies(state),
+  activeGenre: getGenre(state),
 });
 
 export {MovieList};
