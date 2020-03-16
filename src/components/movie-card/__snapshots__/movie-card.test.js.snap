@@ -3,7 +3,6 @@
 exports[`Should MovieCard render correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  onClick={[Function]}
   onMouseLeave={[Function]}
 >
   <div
@@ -12,8 +11,6 @@ exports[`Should MovieCard render correctly 1`] = `
     <video
       alt=""
       height="175"
-      poster="img/bg-the-grand-budapest-hotel.jpg"
-      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
       width="280"
     />
   </div>
@@ -23,9 +20,7 @@ exports[`Should MovieCard render correctly 1`] = `
     <a
       className="small-movie-card__link"
       href="/"
-    >
-      The Grand Budapest Hotel
-    </a>
+    />
   </h3>
 </article>
 `;

@@ -2,6 +2,8 @@ import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
 import MovieCard from "../movie-card/movie-card.jsx";
+import {getGenre} from "../../reducers/app/selectors";
+import {getMovies} from "../../reducers/data/selectors";
 import {GENRE_DEFAULT} from "../../const";
 
 class MovieList extends PureComponent {
@@ -76,8 +78,8 @@ MovieList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  activeGenre: state.genre
+  movies: getMovies(state),
+  activeGenre: getGenre(state),
 });
 
 export {MovieList};
