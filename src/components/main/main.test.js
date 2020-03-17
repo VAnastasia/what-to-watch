@@ -3,14 +3,22 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from "./main.jsx";
+import NameSpace from "../../reducers/name-space.js";
 import {promoFilm, films} from "../../test-data";
 
 const mockStore = configureStore([]);
 
 it(`Should MainScreen render correctly`, () => {
   const store = mockStore({
-    genre: `All genres`,
-    movies: films,
+    [NameSpace.APP]: {
+      genre: `All genres`,
+    },
+    [NameSpace.DATA]: {
+      movies: films,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `AUTH`,
+    }
   });
 
   const tree = renderer
@@ -18,6 +26,7 @@ it(`Should MainScreen render correctly`, () => {
         <Provider store={store}>
           <Main
             promoFilm={promoFilm}
+            authorizationStatus={`AUTH`}
           />
         </Provider>,
         {
