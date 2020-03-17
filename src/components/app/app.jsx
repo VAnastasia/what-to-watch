@@ -1,26 +1,31 @@
 import React, {PureComponent} from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import propTypes from "prop-types";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-import propTypes from "prop-types";
+import {Operation as UserOperation} from "../../reducers/user/user.js";
+import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
 
 class App extends PureComponent {
   render() {
-    const {film, promoFilm} = this.props;
+    const {film, promoFilm, login, authorizationStatus} = this.props;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
             <Main
               promoFilm={promoFilm}
+              login={login}
+              authorizationStatus={authorizationStatus}
             />
           </Route>
           <Route exact path="/films">
             <MoviePage film={film} />
           </Route>
           <Route exact path="/login">
-            <SignIn onSubmit={() => {}} />
+            {authorizationStatus === `AUTH` ? <Redirect to="/" /> : <SignIn onSubmit={login} />}
           </Route>
         </Switch>
       </BrowserRouter>
@@ -29,6 +34,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  authorizationStatus: propTypes.string.isRequired,
+  login: propTypes.func.isRequired,
   promoFilm: propTypes.exact({
     title: propTypes.string,
     genre: propTypes.string,
@@ -49,4 +56,15 @@ App.propTypes = {
   }).isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

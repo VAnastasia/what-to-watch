@@ -2,8 +2,9 @@ import React, {Fragment} from "react";
 import propTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
+import UserBlock from "../user-block/user-block.jsx";
 
-const Main = ({promoFilm}) => {
+const Main = ({promoFilm, authorizationStatus}) => {
   const {title, genre, year} = promoFilm;
   return (
     <Fragment>
@@ -23,11 +24,7 @@ const Main = ({promoFilm}) => {
             </a>
           </div>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock isAuth={authorizationStatus === `AUTH`} />
         </header>
 
         <div className="movie-card__wrap">
@@ -99,6 +96,7 @@ Main.propTypes = {
     genre: propTypes.string,
     year: propTypes.number,
   }).isRequired,
+  authorizationStatus: propTypes.string.isRequired,
 };
 
 export default Main;

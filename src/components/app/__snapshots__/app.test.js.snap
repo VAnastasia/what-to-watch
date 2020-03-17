@@ -214,7 +214,6 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
@@ -224,8 +223,6 @@ Array [
             <video
               alt=""
               height="175"
-              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
               width="280"
             />
           </div>
@@ -235,14 +232,11 @@ Array [
             <a
               className="small-movie-card__link"
               href="/"
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
+            />
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
@@ -252,8 +246,6 @@ Array [
             <video
               alt=""
               height="175"
-              poster="img/bohemian-rhapsody.jpg"
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
               width="280"
             />
           </div>
@@ -263,14 +255,11 @@ Array [
             <a
               className="small-movie-card__link"
               href="/"
-            >
-              Bohemian Rhapsody
-            </a>
+            />
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
@@ -280,8 +269,6 @@ Array [
             <video
               alt=""
               height="175"
-              poster="img/macbeth.jpg"
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
               width="280"
             />
           </div>
@@ -291,14 +278,11 @@ Array [
             <a
               className="small-movie-card__link"
               href="/"
-            >
-              Macbeth
-            </a>
+            />
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
@@ -308,8 +292,6 @@ Array [
             <video
               alt=""
               height="175"
-              poster="img/aviator.jpg"
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
               width="280"
             />
           </div>
@@ -319,14 +301,11 @@ Array [
             <a
               className="small-movie-card__link"
               href="/"
-            >
-              Aviator
-            </a>
+            />
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
@@ -336,8 +315,6 @@ Array [
             <video
               alt=""
               height="175"
-              poster="img/we-need-to-talk-about-kevin.jpg"
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
               width="280"
             />
           </div>
@@ -347,9 +324,7 @@ Array [
             <a
               className="small-movie-card__link"
               href="/"
-            >
-              We need to talk about Kevin
-            </a>
+            />
           </h3>
         </article>
       </div>
