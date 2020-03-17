@@ -15,6 +15,7 @@ it(`Should App render correctly`, () => {
     },
     [NameSpace.DATA]: {
       movies: films,
+      promo: promoFilm,
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,

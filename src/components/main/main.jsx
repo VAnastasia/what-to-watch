@@ -4,13 +4,25 @@ import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 
+class Promo {
+  constructor(film) {
+    this.title = film.name;
+    this.backgroundImage = film.background_image;
+    this.image = film.poster_image;
+    this.genre = film.genre;
+    this.year = film.released;
+    this.isFavorite = film.is_favorite;
+  }
+}
+
 const Main = ({promoFilm, authorizationStatus}) => {
-  const {title, genre, year} = promoFilm;
+  const {title, genre, year, backgroundImage, image, isFavorite} = new Promo(promoFilm);
+
   return (
     <Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={backgroundImage} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -30,7 +42,7 @@ const Main = ({promoFilm, authorizationStatus}) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={image} alt={`${image} poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -49,7 +61,7 @@ const Main = ({promoFilm, authorizationStatus}) => {
                 </button>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    {!isFavorite ? <use xlinkHref="#add"></use> : <use xlinkHref="#in-list"></use>}
                   </svg>
                   <span>My list</span>
                 </button>
@@ -91,11 +103,7 @@ const Main = ({promoFilm, authorizationStatus}) => {
 };
 
 Main.propTypes = {
-  promoFilm: propTypes.exact({
-    title: propTypes.string,
-    genre: propTypes.string,
-    year: propTypes.number,
-  }).isRequired,
+  promoFilm: propTypes.object.isRequired,
   authorizationStatus: propTypes.string.isRequired,
 };
 

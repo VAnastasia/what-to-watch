@@ -25,17 +25,12 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.loadFilms());
+store.dispatch(DataOperation.loadPromo());
 store.dispatch(UserOperation.checkAuth());
-
-const promoFilm = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  year: 2014
-};
 
 ReactDOM.render(
     <Provider store={store}>
-      <App promoFilm={promoFilm} film={filmDetails} />
+      <App film={filmDetails} />
     </Provider>,
     document.getElementById(`root`)
 );

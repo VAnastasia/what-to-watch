@@ -7,16 +7,17 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {Operation as UserOperation} from "../../reducers/user/user.js";
 import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
+import {getPromo} from "../../reducers/data/selectors.js";
 
 class App extends PureComponent {
   render() {
-    const {film, promoFilm, login, authorizationStatus} = this.props;
+    const {film, promo, login, authorizationStatus} = this.props;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
             <Main
-              promoFilm={promoFilm}
+              promoFilm={promo}
               login={login}
               authorizationStatus={authorizationStatus}
             />
@@ -36,6 +37,7 @@ class App extends PureComponent {
 App.propTypes = {
   authorizationStatus: propTypes.string.isRequired,
   login: propTypes.func.isRequired,
+  promo: propTypes.object.isRequired,
   promoFilm: propTypes.exact({
     title: propTypes.string,
     genre: propTypes.string,
@@ -58,6 +60,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  promo: getPromo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
