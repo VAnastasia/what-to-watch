@@ -1,36 +1,28 @@
 import React from "react";
 import propTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
+import Movie from "../../adapters/movie";
 
-class Movie {
-  constructor(film) {
-    this.id = film.id;
-    this.title = film.name;
-    this.image = film.preview_image;
-    this.video = film.preview_video_link;
-  }
-}
-
-const MovieCard = ({film, onHover, onLeave, activeCard}) => {
-  const {id, title, image, video} = new Movie(film);
+const MovieCard = ({film, onHover, onLeave, activeCard, onMovieCardClick}) => {
+  const {id, title, previewImage, videoPreview} = new Movie(film);
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
       onMouseOver={onHover(id)}
       onMouseLeave={onLeave}
+      onClick={onMovieCardClick}
     >
       <div className="small-movie-card__image">
         <VideoPlayer
-          videoSrc={video}
-          posterSrc={image}
+          videoSrc={videoPreview}
+          posterSrc={previewImage}
           isPlaying={activeCard === id}
         />
       </div>
       <h3 className="small-movie-card__title">
         <a
           className="small-movie-card__link"
-          href="/"
         >{title}</a>
       </h3>
     </article>
@@ -38,15 +30,11 @@ const MovieCard = ({film, onHover, onLeave, activeCard}) => {
 };
 
 MovieCard.propTypes = {
-  film: propTypes.shape({
-    id: propTypes.number.isRequired,
-    title: propTypes.string.isRequired,
-    image: propTypes.string.isRequired,
-    video: propTypes.string.isRequired,
-  }).isRequired,
+  film: propTypes.object.isRequired,
   onHover: propTypes.func.isRequired,
   onLeave: propTypes.func.isRequired,
   activeCard: propTypes.number.isRequired,
+  onMovieCardClick: propTypes.func.isRequired,
 };
 
 export default MovieCard;

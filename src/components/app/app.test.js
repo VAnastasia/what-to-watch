@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import App from "./app.jsx";
 import NameSpace from "../../reducers/name-space.js";
-import {promoFilm, films, film} from "../../test-data";
+import {promoFilm, films} from "../../test-data";
 
 const mockStore = configureStore([]);
 
@@ -26,8 +26,8 @@ it(`Should App render correctly`, () => {
     .create(
         <Provider store={store}>
           <App
-            promoFilm={promoFilm}
-            film={film}
+            promo={promoFilm}
+            movies={films}
             authorizationStatus={`AUTH`}
             login={() => {}}
           />

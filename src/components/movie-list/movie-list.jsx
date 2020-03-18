@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
+import history from "../../history.js";
 import MovieCard from "../movie-card/movie-card.jsx";
 import {getGenre} from "../../reducers/app/selectors";
 import {getMovies} from "../../reducers/data/selectors";
@@ -11,6 +12,8 @@ class MovieList extends PureComponent {
     super(props);
     this.handleCardHover = this.handleCardHover.bind(this);
     this.handleCardOut = this.handleCardOut.bind(this);
+    this.handleCardClick = this.handleCardClick.bind(this);
+
     this.timer = null;
 
     this.state = {
@@ -36,6 +39,10 @@ class MovieList extends PureComponent {
     });
   }
 
+  handleCardClick(id) {
+    return () => history.push(`films/${id}`);
+  }
+
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
@@ -54,14 +61,15 @@ class MovieList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        {films.map((film, index) => {
+        {films.map((film) => {
           return (
             <MovieCard
-              key={index}
+              key={film.id}
               film={film}
               onHover={this.handleCardHover}
               onLeave={this.handleCardOut}
               activeCard={activeCard}
+              onMovieCardClick={this.handleCardClick(film.id)}
             />
           );
         })}

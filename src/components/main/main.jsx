@@ -3,21 +3,11 @@ import propTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
-
-class Promo {
-  constructor(film) {
-    this.title = film.name;
-    this.backgroundImage = film.background_image;
-    this.image = film.poster_image;
-    this.genre = film.genre;
-    this.year = film.released;
-    this.isFavorite = film.is_favorite;
-  }
-}
+import Movie from "../../adapters/movie";
 
 const Main = ({promoFilm, authorizationStatus}) => {
-  const {title, genre, year, backgroundImage, image, isFavorite} = new Promo(promoFilm);
-
+  const {title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
+  // const background = `background-color: ${backgroundColor}`;
   return (
     <Fragment>
       <section className="movie-card">
@@ -42,7 +32,7 @@ const Main = ({promoFilm, authorizationStatus}) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={image} alt={`${image} poster`} width="218" height="327" />
+              <img src={posterImage} alt="poster" width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">

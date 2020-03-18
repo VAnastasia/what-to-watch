@@ -1,46 +1,48 @@
 import React from "react";
 import propTypes from "prop-types";
 import {defineLevelFilm} from "../../utils";
+import Movie from "../../adapters/movie";
+import UserBlock from "../user-block/user-block.jsx";
 
-const MoviePage = (props) => {
+const MoviePage = ({film, isAuth}) => {
   const {
     title,
-    image,
-    poster,
+    backgroundImage,
+    backgroundColor,
+    posterImage,
     genre,
     year,
     description,
     rating,
-    ratingCount,
+    scores,
     director,
     actors
-  } = props.film;
+  } = new Movie(film);
   const ratingFixed = rating.toFixed(1);
   const actorList = actors.join(`, `);
   const ratingLevel = defineLevelFilm(rating);
+  const style = {
+    backgroundColor
+  };
   return (
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={style}>
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src={image} alt={title} />
+          <img src={backgroundImage} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <a href="/" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock isAuth={isAuth} />
         </header>
 
         <div className="movie-card__wrap">
@@ -73,7 +75,7 @@ const MoviePage = (props) => {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={poster} alt={`${title} poster`} width="218" height="327" />
+            <img src={posterImage} alt={`${title} poster`} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
@@ -95,7 +97,7 @@ const MoviePage = (props) => {
               <div className="movie-rating__score">{ratingFixed}</div>
               <p className="movie-rating__meta">
                 <span className="movie-rating__level">{ratingLevel}</span>
-                <span className="movie-rating__count">{ratingCount} ratings</span>
+                <span className="movie-rating__count">{scores} ratings</span>
               </p>
             </div>
 
@@ -114,19 +116,8 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  film: propTypes.shape({
-    id: propTypes.number.isRequired,
-    title: propTypes.string.isRequired,
-    image: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    rating: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired,
-    year: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    actors: propTypes.arrayOf(propTypes.string),
-  }).isRequired,
+  film: propTypes.object.isRequired,
+  isAuth: propTypes.bool.isRequired,
 };
 
 export default MoviePage;

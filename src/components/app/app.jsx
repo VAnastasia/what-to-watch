@@ -1,19 +1,20 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
-import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {Router, Route, Switch, Redirect} from "react-router-dom";
+import history from "../../history.js";
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {Operation as UserOperation} from "../../reducers/user/user.js";
 import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
-import {getPromo} from "../../reducers/data/selectors.js";
+import {getPromo, getMovies} from "../../reducers/data/selectors.js";
 
 class App extends PureComponent {
   render() {
-    const {film, promo, login, authorizationStatus} = this.props;
+    const {promo, login, authorizationStatus, movies} = this.props;
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           <Route exact path="/">
             <Main
@@ -22,14 +23,17 @@ class App extends PureComponent {
               authorizationStatus={authorizationStatus}
             />
           </Route>
-          <Route exact path="/films">
-            <MoviePage film={film} />
-          </Route>
+          <Route exact path="/films/:id"
+            render={(props) => {
+              const id = Number(props.match.params.id);
+              const film = movies.filter((movie) => movie.id === id);
+              return <MoviePage film={film[0]} isAuth={authorizationStatus === `AUTH`} />;
+            }} />
           <Route exact path="/login">
             {authorizationStatus === `AUTH` ? <Redirect to="/" /> : <SignIn onSubmit={login} />}
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
@@ -38,29 +42,15 @@ App.propTypes = {
   authorizationStatus: propTypes.string.isRequired,
   login: propTypes.func.isRequired,
   promo: propTypes.object.isRequired,
-  promoFilm: propTypes.exact({
-    title: propTypes.string,
-    genre: propTypes.string,
-    year: propTypes.number,
-  }).isRequired,
-  film: propTypes.shape({
-    id: propTypes.number.isRequired,
-    title: propTypes.string.isRequired,
-    image: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    rating: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired,
-    year: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    actors: propTypes.arrayOf(propTypes.string),
-  }).isRequired,
+  movies: propTypes.arrayOf(
+      propTypes.object.isRequired
+  ).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   promo: getPromo(state),
+  movies: getMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
