@@ -3,6 +3,7 @@
 exports[`Should MovieCard render correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
+  onClick={[Function]}
   onMouseLeave={[Function]}
 >
   <div
@@ -19,7 +20,6 @@ exports[`Should MovieCard render correctly 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="/"
     />
   </h3>
 </article>

@@ -4,7 +4,7 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import App from "./components/app/app.jsx";
-import filmDetails from "./mocks/film-details";
+// import filmDetails from "./mocks/film-details";
 import {reducer} from "./reducers/reducer.js";
 import {Operation as DataOperation} from "./reducers/data/data";
 import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducers/user/user";
@@ -26,11 +26,12 @@ const store = createStore(
 
 store.dispatch(DataOperation.loadFilms());
 store.dispatch(DataOperation.loadPromo());
+// store.dispatch(DataOperation.loadComments(1));
 store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App film={filmDetails} />
+      <App />
     </Provider>,
     document.getElementById(`root`)
 );

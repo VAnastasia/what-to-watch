@@ -2,12 +2,12 @@ import React from "react";
 import {Link} from "react-router-dom";
 import propTypes from "prop-types";
 
-const UserBlock = ({isAuth}) => {
+const UserBlock = ({authorizationStatus}) => {
   return (
     <div className="user-block">
-      {isAuth ? (
+      {authorizationStatus === `AUTH` ? (
         <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
         </div>
       ) : (
         <Link to="/login" href="sign-in.html" className="user-block__link">Sign in</Link>
@@ -17,7 +17,7 @@ const UserBlock = ({isAuth}) => {
 };
 
 UserBlock.propTypes = {
-  isAuth: propTypes.bool.isRequired,
+  authorizationStatus: propTypes.string.isRequired,
 };
 
 export default UserBlock;

@@ -9,3 +9,7 @@ export const getMovies = (state) => {
 export const getPromo = (state) => {
   return state[NAME_SPACE].promo;
 };
+
+export const getComments = (state) => {
+  return state[NAME_SPACE].comments;
+};
