@@ -7,7 +7,6 @@ it(`Should MovieList render correctly`, () => {
   const tree = renderer
     .create(<MovieList
       movies={films}
-      activeGenre={`All genres`}
     />,
     {
       createNodeMock: () => {

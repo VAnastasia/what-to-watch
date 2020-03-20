@@ -1,12 +1,29 @@
 import React, {Fragment} from "react";
 import propTypes from "prop-types";
+import {connect} from 'react-redux';
 import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
+import ShowMore from "../show-more/show-more.jsx";
 import Movie from "../../adapters/movie";
+import {getGenre, getShownMovies} from "../../reducers/app/selectors";
+import {getMovies} from "../../reducers/data/selectors";
+import {ActionCreator} from "../../reducers/app/app";
+import {GENRE_DEFAULT, SHOW_MOVIES_ON_CLICK} from "../../const";
 
-const Main = ({promoFilm, authorizationStatus}) => {
+const getFiltredMovies = (movies, activeGenre) => {
+  if (activeGenre !== GENRE_DEFAULT) {
+    return movies.slice().filter((movie) => movie.genre === activeGenre);
+  }
+  return movies;
+};
+
+const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies, changeShownMovies}) => {
   const {title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
+  const films = getFiltredMovies(movies, activeGenre);
+
+  const onClickShowMore = () => changeShownMovies(shownMovies + SHOW_MOVIES_ON_CLICK);
+
   return (
     <Fragment>
       <section className="movie-card">
@@ -66,11 +83,9 @@ const Main = ({promoFilm, authorizationStatus}) => {
 
           <GenreList />
 
-          <MovieList />
+          <MovieList movies={films.slice(0, shownMovies)} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {shownMovies < films.length && <ShowMore onClick={onClickShowMore} />}
         </section>
 
         <footer className="page-footer">
@@ -94,6 +109,25 @@ const Main = ({promoFilm, authorizationStatus}) => {
 Main.propTypes = {
   promoFilm: propTypes.object.isRequired,
   authorizationStatus: propTypes.string.isRequired,
+  movies: propTypes.arrayOf(
+      propTypes.object.isRequired
+  ).isRequired,
+  activeGenre: propTypes.string.isRequired,
+  shownMovies: propTypes.number.isRequired,
+  changeShownMovies: propTypes.func.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  movies: getMovies(state),
+  shownMovies: getShownMovies(state),
+  activeGenre: getGenre(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  changeShownMovies: (amount) => {
+    dispatch(ActionCreator.changeMoviesAmount(amount));
+  }
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

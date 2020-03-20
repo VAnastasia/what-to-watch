@@ -12,9 +12,11 @@ it(`Should MainScreen render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       genre: `All genres`,
+      shownMovies: 8,
     },
     [NameSpace.DATA]: {
       movies: films,
+      comments: [],
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
@@ -27,6 +29,10 @@ it(`Should MainScreen render correctly`, () => {
           <Main
             promoFilm={promoFilm}
             authorizationStatus={`AUTH`}
+            movies={films}
+            activeGenre={`All genres`}
+            shownMovies={8}
+            changeShownMovies={() => {}}
           />
         </Provider>,
         {
