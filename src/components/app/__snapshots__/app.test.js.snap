@@ -83,7 +83,7 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Drama
+              drama
             </span>
             <span
               className="movie-card__year"

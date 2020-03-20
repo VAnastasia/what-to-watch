@@ -30,9 +30,10 @@ class App extends PureComponent {
               const film = movies.filter((movie) => movie.id === id);
               return <MoviePage
                 film={film[0]}
-                isAuth={authorizationStatus === `AUTH`}
+                authorizationStatus={authorizationStatus}
                 comments={comments}
                 loadComments={loadComments}
+                movies={movies}
               />;
             }} />
           <Route exact path="/login">

@@ -7,7 +7,6 @@ import Movie from "../../adapters/movie";
 
 const Main = ({promoFilm, authorizationStatus}) => {
   const {title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
-  // const background = `background-color: ${backgroundColor}`;
   return (
     <Fragment>
       <section className="movie-card">
@@ -26,7 +25,7 @@ const Main = ({promoFilm, authorizationStatus}) => {
             </a>
           </div>
 
-          <UserBlock isAuth={authorizationStatus === `AUTH`} />
+          <UserBlock authorizationStatus={authorizationStatus} />
         </header>
 
         <div className="movie-card__wrap">

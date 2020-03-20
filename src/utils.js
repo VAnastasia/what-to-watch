@@ -38,10 +38,16 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-const getRuntime = (runtime) => {
-  const hours = Math.floor(runtime / 60);
-  const min = runtime - hours * 60;
-  return `${hours} h ${min} m`;
+const getRuntime = (minutes) => {
+  return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
 };
 
-export {defineLevelFilm, fixNumber, extend, getRuntime};
+const dateFormat = new Intl.DateTimeFormat(`en-US`, {
+  month: `long`,
+  day: `numeric`,
+  year: `numeric`
+});
+
+const formatDate = (date) => dateFormat.format(date);
+
+export {defineLevelFilm, fixNumber, extend, getRuntime, formatDate};

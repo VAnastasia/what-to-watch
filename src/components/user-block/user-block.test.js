@@ -5,7 +5,7 @@ import UserBlock from "./user-block.jsx";
 it(`UserBlock component render correctly`, () => {
   const tree = renderer.create(
       <UserBlock
-        isAuth={true}
+        authorizationStatus={`AUTH`}
       />
   ).toJSON();
 
