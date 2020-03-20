@@ -12,10 +12,12 @@ it(`Should App render correctly`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       genre: `All genres`,
+      shownMovies: 8,
     },
     [NameSpace.DATA]: {
       movies: films,
       promo: promoFilm,
+      comments: [],
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
