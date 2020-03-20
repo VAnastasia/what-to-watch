@@ -16,7 +16,7 @@ class Movie {
     this.scores = film.scores_count;
     this.director = film.director;
     this.actors = film.starring;
-    this.runTime = film.run_time;
+    this.runtime = film.run_time;
   }
 }
 

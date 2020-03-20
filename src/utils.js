@@ -38,4 +38,10 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-export {defineLevelFilm, fixNumber, extend};
+const getRuntime = (runtime) => {
+  const hours = Math.floor(runtime / 60);
+  const min = runtime - hours * 60;
+  return `${hours} h ${min} m`;
+};
+
+export {defineLevelFilm, fixNumber, extend, getRuntime};

@@ -7,12 +7,13 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {Operation as UserOperation} from "../../reducers/user/user.js";
+import {Operation as DataOperation} from "../../reducers/data/data.js";
 import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
-import {getPromo, getMovies} from "../../reducers/data/selectors.js";
+import {getPromo, getMovies, getComments} from "../../reducers/data/selectors.js";
 
 class App extends PureComponent {
   render() {
-    const {promo, login, authorizationStatus, movies} = this.props;
+    const {promo, login, authorizationStatus, movies, comments, loadComments} = this.props;
     return (
       <Router history={history}>
         <Switch>
@@ -27,7 +28,12 @@ class App extends PureComponent {
             render={(props) => {
               const id = Number(props.match.params.id);
               const film = movies.filter((movie) => movie.id === id);
-              return <MoviePage film={film[0]} isAuth={authorizationStatus === `AUTH`} />;
+              return <MoviePage
+                film={film[0]}
+                isAuth={authorizationStatus === `AUTH`}
+                comments={comments}
+                loadComments={loadComments}
+              />;
             }} />
           <Route exact path="/login">
             {authorizationStatus === `AUTH` ? <Redirect to="/" /> : <SignIn onSubmit={login} />}
@@ -45,18 +51,24 @@ App.propTypes = {
   movies: propTypes.arrayOf(
       propTypes.object.isRequired
   ).isRequired,
+  comments: propTypes.array.isRequired,
+  loadComments: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   promo: getPromo(state),
   movies: getMovies(state),
+  comments: getComments(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
   },
+  loadComments(id) {
+    dispatch(DataOperation.loadComments(id));
+  }
 });
 
 export {App};
