@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
+import UserBlock from "../user-block/user-block.jsx";
 import {Operation as UserOperation} from "../../reducers/user/user.js";
 import {Operation as DataOperation} from "../../reducers/data/data.js";
 import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
@@ -21,7 +22,7 @@ class App extends PureComponent {
             <Main
               promoFilm={promo}
               login={login}
-              authorizationStatus={authorizationStatus}
+              userBlock={<UserBlock authorizationStatus={authorizationStatus} />}
             />
           </Route>
           <Route exact path="/films/:id"
@@ -30,10 +31,10 @@ class App extends PureComponent {
               const film = movies.filter((movie) => movie.id === id);
               return <MoviePage
                 film={film[0]}
-                authorizationStatus={authorizationStatus}
                 comments={comments}
                 loadComments={loadComments}
                 movies={movies}
+                userBlock={<UserBlock authorizationStatus={authorizationStatus} />}
               />;
             }} />
           <Route exact path="/login">

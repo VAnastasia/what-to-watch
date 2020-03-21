@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import withActiveCard from "../../hocs/with-active-card/with-active-card.jsx";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
-import UserBlock from "../user-block/user-block.jsx";
 import ShowMore from "../show-more/show-more.jsx";
 import Movie from "../../adapters/movie";
 import {getGenre, getShownMovies} from "../../reducers/app/selectors";
@@ -22,7 +21,7 @@ const getFiltredMovies = (movies, activeGenre) => {
   return movies;
 };
 
-const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies, changeShownMovies, loadComments}) => {
+const Main = ({promoFilm, userBlock, movies, activeGenre, shownMovies, changeShownMovies, loadComments}) => {
   const {title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
   const films = getFiltredMovies(movies, activeGenre);
 
@@ -46,7 +45,7 @@ const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies,
             </a>
           </div>
 
-          <UserBlock authorizationStatus={authorizationStatus} />
+          {userBlock}
         </header>
 
         <div className="movie-card__wrap">
@@ -112,7 +111,6 @@ const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies,
 
 Main.propTypes = {
   promoFilm: propTypes.object.isRequired,
-  authorizationStatus: propTypes.string.isRequired,
   movies: propTypes.arrayOf(
       propTypes.object.isRequired
   ).isRequired,
@@ -120,6 +118,10 @@ Main.propTypes = {
   shownMovies: propTypes.number.isRequired,
   changeShownMovies: propTypes.func.isRequired,
   loadComments: propTypes.func.isRequired,
+  userBlock: propTypes.oneOfType([
+    propTypes.arrayOf(propTypes.node),
+    propTypes.node
+  ]).isRequired,
 };
 
 const mapStateToProps = (state) => ({

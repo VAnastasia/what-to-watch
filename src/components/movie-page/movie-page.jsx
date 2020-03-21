@@ -2,7 +2,6 @@ import React, {PureComponent, Fragment} from "react";
 import propTypes from "prop-types";
 import Movie from "../../adapters/movie";
 import Tabs from "../tabs/tabs.jsx";
-import UserBlock from "../user-block/user-block.jsx";
 import SimilarMovies from "../similar-movies/similar-movies.jsx";
 
 // import MovieList from "../movie-list/movie-list.jsx";
@@ -46,7 +45,13 @@ class MoviePage extends PureComponent {
       backgroundColor,
     };
 
-    const {film, comments, authorizationStatus, movies, loadComments} = this.props;
+    const {
+      film,
+      comments,
+      movies,
+      loadComments,
+      userBlock,
+    } = this.props;
     const similarMovies = movies.filter((movie) => movie.genre === genre && movie.id !== id).slice(0, 4);
 
     return (
@@ -67,8 +72,7 @@ class MoviePage extends PureComponent {
                   <span className="logo__letter logo__letter--3">W</span>
                 </a>
               </div>
-
-              <UserBlock authorizationStatus={authorizationStatus} />
+              {userBlock}
             </header>
 
             <div className="movie-card__wrap">
@@ -145,10 +149,13 @@ class MoviePage extends PureComponent {
 
 MoviePage.propTypes = {
   film: propTypes.object.isRequired,
-  authorizationStatus: propTypes.string.isRequired,
   loadComments: propTypes.func.isRequired,
   comments: propTypes.array.isRequired,
   movies: propTypes.array.isRequired,
+  userBlock: propTypes.oneOfType([
+    propTypes.arrayOf(propTypes.node),
+    propTypes.node
+  ]).isRequired,
 };
 
 export default MoviePage;
