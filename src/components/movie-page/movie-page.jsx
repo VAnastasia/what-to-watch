@@ -5,6 +5,8 @@ import Tabs from "../tabs/tabs.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import SimilarMovies from "../similar-movies/similar-movies.jsx";
 
+// import MovieList from "../movie-list/movie-list.jsx";
+
 const TabName = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
@@ -29,12 +31,6 @@ class MoviePage extends PureComponent {
     };
   }
 
-  componentDidMount() {
-    const {film, loadComments} = this.props;
-    const id = film.id;
-    loadComments(id);
-  }
-
   render() {
     const {
       id,
@@ -50,7 +46,7 @@ class MoviePage extends PureComponent {
       backgroundColor,
     };
 
-    const {film, comments, authorizationStatus, movies} = this.props;
+    const {film, comments, authorizationStatus, movies, loadComments} = this.props;
     const similarMovies = movies.filter((movie) => movie.genre === genre && movie.id !== id).slice(0, 4);
 
     return (
@@ -118,7 +114,30 @@ class MoviePage extends PureComponent {
           </div>
         </section>
 
-        <SimilarMovies films={similarMovies} activeCard={0} onClick={() => {}} />
+        <SimilarMovies films={similarMovies} loadComments={loadComments} />
+
+        {/* <div className="page-content">
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
+
+            <div className="catalog__movies-list">
+              <MovieList movies={similarMovies} />
+            </div>
+          </section>
+          <footer className="page-footer">
+            <div className="logo">
+              <a href="main.html" className="logo__link logo__link--light">
+                <span className="logo__letter logo__letter--1">W</span>
+                <span className="logo__letter logo__letter--2">T</span>
+                <span className="logo__letter logo__letter--3">W</span>
+              </a>
+            </div>
+
+            <div className="copyright">
+              <p>© 2019 What to watch Ltd.</p>
+            </div>
+          </footer>
+        </div> */}
       </Fragment>
     );
   }

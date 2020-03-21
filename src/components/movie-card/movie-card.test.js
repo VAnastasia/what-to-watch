@@ -9,7 +9,6 @@ it(`Should MovieCard render correctly`, () => {
       film={film}
       onHover={() => {}}
       onLeave={() => {}}
-      onMovieCardClick={() => {}}
       activeCard={film.id}
     />,
     {

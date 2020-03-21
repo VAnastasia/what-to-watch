@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
+import withActiveCard from "../../hocs/with-active-card/with-active-card.jsx";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import UserBlock from "../user-block/user-block.jsx";
@@ -9,7 +10,10 @@ import Movie from "../../adapters/movie";
 import {getGenre, getShownMovies} from "../../reducers/app/selectors";
 import {getMovies} from "../../reducers/data/selectors";
 import {ActionCreator} from "../../reducers/app/app";
+import {Operation as DataOperation} from "../../reducers/data/data.js";
 import {GENRE_DEFAULT, SHOW_MOVIES_ON_CLICK} from "../../const";
+
+const MovieListWrapped = withActiveCard(MovieList);
 
 const getFiltredMovies = (movies, activeGenre) => {
   if (activeGenre !== GENRE_DEFAULT) {
@@ -18,7 +22,7 @@ const getFiltredMovies = (movies, activeGenre) => {
   return movies;
 };
 
-const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies, changeShownMovies}) => {
+const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies, changeShownMovies, loadComments}) => {
   const {title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
   const films = getFiltredMovies(movies, activeGenre);
 
@@ -83,7 +87,7 @@ const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies,
 
           <GenreList />
 
-          <MovieList movies={films.slice(0, shownMovies)} />
+          <MovieListWrapped movies={films.slice(0, shownMovies)} loadComments={loadComments} />
 
           {shownMovies < films.length && <ShowMore onClick={onClickShowMore} />}
         </section>
@@ -115,6 +119,7 @@ Main.propTypes = {
   activeGenre: propTypes.string.isRequired,
   shownMovies: propTypes.number.isRequired,
   changeShownMovies: propTypes.func.isRequired,
+  loadComments: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -126,6 +131,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeShownMovies: (amount) => {
     dispatch(ActionCreator.changeMoviesAmount(amount));
+  },
+  loadComments(id) {
+    dispatch(DataOperation.loadComments(id));
   }
 });
 

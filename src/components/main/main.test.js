@@ -16,6 +16,7 @@ it(`Should MainScreen render correctly`, () => {
     },
     [NameSpace.DATA]: {
       movies: films,
+      promo: promoFilm,
       comments: [],
     },
     [NameSpace.USER]: {

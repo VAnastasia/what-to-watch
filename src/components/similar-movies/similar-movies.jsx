@@ -2,7 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card.jsx";
 
-const SimilarMovies = ({films, activeCard, onClick}) => {
+const SimilarMovies = ({films, loadComments}) => {
   return (
     <div className="page-content">
       <section className="catalog catalog--like-this">
@@ -14,8 +14,8 @@ const SimilarMovies = ({films, activeCard, onClick}) => {
               <MovieCard
                 key={film.id}
                 film={film}
-                activeCard={activeCard}
-                onMovieCardClick={onClick}
+                loadComments={loadComments}
+                activeCard={0}
                 onLeave={() => {}}
                 onHover={() => {}}
               />);
@@ -41,8 +41,7 @@ const SimilarMovies = ({films, activeCard, onClick}) => {
 
 SimilarMovies.propTypes = {
   films: propTypes.array.isRequired,
-  activeCard: propTypes.number.isRequired,
-  onClick: propTypes.func.isRequired,
+  loadComments: propTypes.func.isRequired,
 };
 
 export default SimilarMovies;
