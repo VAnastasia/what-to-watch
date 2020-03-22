@@ -10,6 +10,7 @@ it(`Should MovieCard render correctly`, () => {
       onHover={() => {}}
       onLeave={() => {}}
       activeCard={film.id}
+      loadComments={() => {}}
     />,
     {
       createNodeMock: () => {

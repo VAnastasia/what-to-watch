@@ -34,6 +34,7 @@ it(`Should MainScreen render correctly`, () => {
             activeGenre={`All genres`}
             shownMovies={8}
             changeShownMovies={() => {}}
+            userBlock={<div></div>}
           />
         </Provider>,
         {

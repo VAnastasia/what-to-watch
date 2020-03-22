@@ -8,6 +8,7 @@ it(`Should SimilarMovies render correctly`, () => {
   const tree = renderer
     .create(<SimilarMovies
       films={films}
+      loadComments={() => {}}
     />,
     {
       createNodeMock: () => {
