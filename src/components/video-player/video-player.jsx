@@ -34,7 +34,7 @@ class VideoPlayer extends PureComponent {
       video.src = videoSrc;
       video.play();
     } else {
-      video.load();
+      video.pause();
     }
   }
 

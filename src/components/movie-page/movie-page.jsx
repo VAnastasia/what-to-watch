@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import Movie from "../../adapters/movie";
 import Tabs from "../tabs/tabs.jsx";
 import SimilarMovies from "../similar-movies/similar-movies.jsx";
+import history from "../../history.js";
 
 // import MovieList from "../movie-list/movie-list.jsx";
 
@@ -16,6 +17,7 @@ class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
     this.handleTabClick = this.handleTabClick.bind(this);
+    this.handlePlayButtonClick = this.handlePlayButtonClick(this);
 
     this.state = {
       activeTab: TabName.OVERVIEW,
@@ -28,6 +30,11 @@ class MoviePage extends PureComponent {
         activeTab: TabName[tab],
       });
     };
+  }
+
+  handlePlayButtonClick() {
+    const {id} = this.props.film;
+    return () => history.push(`/player/${id}`);
   }
 
   render() {
@@ -84,7 +91,7 @@ class MoviePage extends PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
+                  <button className="btn btn--play movie-card__button" type="button" onClick={this.handlePlayButtonClick}>
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
                     </svg>
@@ -119,29 +126,6 @@ class MoviePage extends PureComponent {
         </section>
 
         <SimilarMovies films={similarMovies} loadComments={loadComments} />
-
-        {/* <div className="page-content">
-          <section className="catalog catalog--like-this">
-            <h2 className="catalog__title">More like this</h2>
-
-            <div className="catalog__movies-list">
-              <MovieList movies={similarMovies} />
-            </div>
-          </section>
-          <footer className="page-footer">
-            <div className="logo">
-              <a href="main.html" className="logo__link logo__link--light">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="copyright">
-              <p>© 2019 What to watch Ltd.</p>
-            </div>
-          </footer>
-        </div> */}
       </Fragment>
     );
   }

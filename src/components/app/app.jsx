@@ -7,6 +7,8 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import UserBlock from "../user-block/user-block.jsx";
+import GenreList from "../genre-list/genre-list.jsx";
+import FullScreenVideoPlayer from "../full-screen-video-player/full-screen-video-player.jsx";
 import {Operation as UserOperation} from "../../reducers/user/user.js";
 import {Operation as DataOperation} from "../../reducers/data/data.js";
 import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
@@ -23,6 +25,7 @@ class App extends PureComponent {
               promoFilm={promo}
               login={login}
               userBlock={<UserBlock authorizationStatus={authorizationStatus} />}
+              genreList={<GenreList />}
             />
           </Route>
           <Route exact path="/films/:id"
@@ -40,6 +43,12 @@ class App extends PureComponent {
           <Route exact path="/login">
             {authorizationStatus === `AUTH` ? <Redirect to="/" /> : <SignIn onSubmit={login} />}
           </Route>
+          <Route exact path="/player/:id"
+            render={(props) => {
+              const id = Number(props.match.params.id);
+              const film = movies.filter((movie) => movie.id === id);
+              return <FullScreenVideoPlayer film={film[0]} />;
+            }} />
         </Switch>
       </Router>
     );

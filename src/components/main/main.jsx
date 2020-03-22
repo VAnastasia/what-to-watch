@@ -1,9 +1,10 @@
 import React, {Fragment} from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
+// import {Link} from "react-router-dom";
 import withActiveCard from "../../hocs/with-active-card/with-active-card.jsx";
 import MovieList from "../movie-list/movie-list.jsx";
-import GenreList from "../genre-list/genre-list.jsx";
+// import GenreList from "../genre-list/genre-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
 import Movie from "../../adapters/movie";
 import {getGenre, getShownMovies} from "../../reducers/app/selectors";
@@ -11,6 +12,7 @@ import {getMovies} from "../../reducers/data/selectors";
 import {ActionCreator} from "../../reducers/app/app";
 import {Operation as DataOperation} from "../../reducers/data/data.js";
 import {GENRE_DEFAULT, SHOW_MOVIES_ON_CLICK} from "../../const";
+import history from "../../history.js";
 
 const MovieListWrapped = withActiveCard(MovieList);
 
@@ -21,11 +23,21 @@ const getFiltredMovies = (movies, activeGenre) => {
   return movies;
 };
 
-const Main = ({promoFilm, userBlock, movies, activeGenre, shownMovies, changeShownMovies, loadComments}) => {
-  const {title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
+const Main = ({
+  promoFilm,
+  userBlock,
+  movies,
+  activeGenre,
+  shownMovies,
+  changeShownMovies,
+  loadComments,
+  genreList
+}) => {
+  const {id, title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
   const films = getFiltredMovies(movies, activeGenre);
 
   const onClickShowMore = () => changeShownMovies(shownMovies + SHOW_MOVIES_ON_CLICK);
+  const handlePlayButtonClick = () => history.push(`/player/${id}`);
 
   return (
     <Fragment>
@@ -62,8 +74,8 @@ const Main = ({promoFilm, userBlock, movies, activeGenre, shownMovies, changeSho
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg className="0 0 19 19" width="19" height="19">
+                <button className="btn btn--play movie-card__button" type="button" onClick={handlePlayButtonClick}>
+                  <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
@@ -84,7 +96,7 @@ const Main = ({promoFilm, userBlock, movies, activeGenre, shownMovies, changeSho
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList />
+          {genreList}
 
           <MovieListWrapped movies={films.slice(0, shownMovies)} loadComments={loadComments} />
 
@@ -119,6 +131,10 @@ Main.propTypes = {
   changeShownMovies: propTypes.func.isRequired,
   loadComments: propTypes.func.isRequired,
   userBlock: propTypes.oneOfType([
+    propTypes.arrayOf(propTypes.node),
+    propTypes.node
+  ]).isRequired,
+  genreList: propTypes.oneOfType([
     propTypes.arrayOf(propTypes.node),
     propTypes.node
   ]).isRequired,
