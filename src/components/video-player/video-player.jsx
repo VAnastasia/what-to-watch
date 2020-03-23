@@ -34,7 +34,7 @@ class VideoPlayer extends PureComponent {
       video.src = videoSrc;
       video.play();
     } else {
-      video.pause();
+      video.load();
     }
   }
 
@@ -42,7 +42,7 @@ class VideoPlayer extends PureComponent {
     const video = this._videoRef.current;
 
     video.onplay = null;
-    video.src = `path`;
+    video.src = ``;
     video.muted = false;
 
   }

@@ -33,8 +33,10 @@ class MoviePage extends PureComponent {
   }
 
   handlePlayButtonClick() {
-    const {id} = this.props.film;
-    return () => history.push(`/player/${id}`);
+    return () => {
+      const {id} = this.props.film;
+      history.push(`/player/${id}`);
+    };
   }
 
   render() {
@@ -48,10 +50,6 @@ class MoviePage extends PureComponent {
       year,
     } = new Movie(this.props.film);
 
-    const style = {
-      backgroundColor,
-    };
-
     const {
       film,
       comments,
@@ -63,7 +61,7 @@ class MoviePage extends PureComponent {
 
     return (
       <Fragment>
-        <section className="movie-card movie-card--full" style={style}>
+        <section className="movie-card movie-card--full" style={{backgroundColor}}>
           <div className="movie-card__hero">
             <div className="movie-card__bg">
               <img src={backgroundImage} alt={title} />
@@ -73,7 +71,7 @@ class MoviePage extends PureComponent {
 
             <header className="page-header movie-card__head">
               <div className="logo">
-                <a href="/" className="logo__link">
+                <a className="logo__link" onClick={history.goBack}>
                   <span className="logo__letter logo__letter--1">W</span>
                   <span className="logo__letter logo__letter--2">T</span>
                   <span className="logo__letter logo__letter--3">W</span>

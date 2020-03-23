@@ -7,8 +7,8 @@ it(`Should MovieCard render correctly`, () => {
   const tree = renderer
     .create(<MovieCard
       film={film}
-      onHover={() => {}}
-      onLeave={() => {}}
+      onMovieCardHover={() => {}}
+      onMovieCardOut={() => {}}
       activeCard={film.id}
       loadComments={() => {}}
     />,

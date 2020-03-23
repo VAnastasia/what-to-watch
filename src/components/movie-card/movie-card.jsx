@@ -4,8 +4,15 @@ import VideoPlayer from "../video-player/video-player.jsx";
 import Movie from "../../adapters/movie";
 import history from "../../history.js";
 
-const MovieCard = ({film, onHover, onLeave, activeCard, loadComments}) => {
-  const {id, title, previewImage, videoPreview} = new Movie(film);
+const MovieCard = ({
+  film,
+  loadComments,
+  onMovieCardHover = () => {},
+  onMovieCardOut = () => {},
+  isPlayer = false,
+  activeCard = -1,
+}) => {
+  const {id, title, videoPreview, previewImage} = new Movie(film);
   const handleClick = (idFilm) => {
     return () => {
       loadComments(id);
@@ -16,16 +23,18 @@ const MovieCard = ({film, onHover, onLeave, activeCard, loadComments}) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseOver={onHover(id)}
-      onMouseLeave={onLeave}
+      onMouseOver={onMovieCardHover(id)}
+      onMouseLeave={onMovieCardOut}
       onClick={handleClick(id)}
     >
       <div className="small-movie-card__image">
-        <VideoPlayer
-          videoSrc={videoPreview}
-          posterSrc={previewImage}
-          isPlaying={activeCard === id}
-        />
+        {isPlayer ? (
+          <VideoPlayer
+            videoSrc={videoPreview}
+            posterSrc={previewImage}
+            isPlaying={activeCard === id}
+          />) : <img src={previewImage} alt={title} width="280" height="175" />
+        }
       </div>
       <h3 className="small-movie-card__title">
         <a
@@ -38,10 +47,11 @@ const MovieCard = ({film, onHover, onLeave, activeCard, loadComments}) => {
 
 MovieCard.propTypes = {
   film: propTypes.object.isRequired,
-  onHover: propTypes.func,
-  onLeave: propTypes.func,
+  onMovieCardHover: propTypes.func,
+  onMovieCardOut: propTypes.func,
   activeCard: propTypes.number,
   loadComments: propTypes.func.isRequired,
+  isPlayer: propTypes.bool,
 };
 
 export default MovieCard;

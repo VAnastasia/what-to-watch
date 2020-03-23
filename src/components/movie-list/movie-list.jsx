@@ -1,6 +1,9 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card.jsx";
+import withActiveCard from "../../hocs/with-active-card/with-active-card.jsx";
+
+const MovieCardWrapped = withActiveCard(MovieCard);
 
 class MovieList extends PureComponent {
   constructor(props) {
@@ -8,18 +11,15 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {movies, activeCard, onMovieCardHover, onMovieCardOut, loadComments} = this.props;
+    const {movies, loadComments} = this.props;
 
     return (
       <div className="catalog__movies-list">
         {movies.map((film) => {
           return (
-            <MovieCard
+            <MovieCardWrapped
               key={film.id}
               film={film}
-              onHover={onMovieCardHover}
-              onLeave={onMovieCardOut}
-              activeCard={activeCard}
               loadComments={loadComments}
             />
           );
@@ -33,9 +33,6 @@ MovieList.propTypes = {
   movies: propTypes.arrayOf(
       propTypes.object.isRequired
   ).isRequired,
-  onMovieCardHover: propTypes.func,
-  onMovieCardOut: propTypes.func,
-  activeCard: propTypes.number,
   loadComments: propTypes.func.isRequired,
 };
 

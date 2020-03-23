@@ -1,9 +1,9 @@
 const promoFilm = {
   id: 1,
   title: `The Grand Budapest Hotel`,
-  backgroundImage: `img/bg-the-grand-budapest-hotel.jpg`,
+  backgroundImage: `/img/bg-the-grand-budapest-hotel.jpg`,
   videoPreview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  previewImage: `img/the-grand-budapest-hotel-poster.jpg`,
+  previewImage: `/img/the-grand-budapest-hotel-poster.jpg`,
   genre: `drama`,
   year: `2014`,
   rating: 8.9,
@@ -59,9 +59,9 @@ const films = [
 const film = {
   id: 1,
   title: `The Grand Budapest Hotel`,
-  backgroundImage: `img/bg-the-grand-budapest-hotel.jpg`,
+  backgroundImage: `/img/bg-the-grand-budapest-hotel.jpg`,
   videoPreview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  previewImage: `img/the-grand-budapest-hotel-poster.jpg`,
+  previewImage: `/img/the-grand-budapest-hotel-poster.jpg`,
   genre: `drama`,
   year: `2014`,
   rating: 8.9,

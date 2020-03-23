@@ -11,20 +11,20 @@ Enzyme.configure({
 });
 
 it(`Should card be hover`, () => {
-  const onHover = jest.fn();
+  const onMovieCardHover = jest.fn();
 
   const movieCard = shallow(
       <MovieCard
         film={film}
-        onHover={onHover}
-        onLeave={noop}
+        onMovieCardHover={onMovieCardHover}
+        onMovieCardOut={noop}
         activeCard={1}
         loadComments={noop}
       />
   );
 
   movieCard.simulate(`mouseover`);
-  expect(onHover.mock.calls.length).toBe(1);
+  expect(onMovieCardHover.mock.calls.length).toBe(1);
 });
 
 it(`Should card be hover`, () => {
@@ -33,7 +33,7 @@ it(`Should card be hover`, () => {
   const movieCard = shallow(
       <MovieCard
         film={film}
-        onHover={noop}
+        onMovieCardHover={noop}
         onLeave={noop}
         activeCard={1}
         loadComments={loadComments}
@@ -45,19 +45,19 @@ it(`Should card be hover`, () => {
 });
 
 it(`Should card be hover`, () => {
-  const onLeave = jest.fn();
+  const onMovieCardOut = jest.fn();
 
   const movieCard = shallow(
       <MovieCard
         film={film}
-        onHover={noop}
-        onLeave={onLeave}
+        onMovieCardHover={noop}
+        onMovieCardOut={onMovieCardOut}
         activeCard={1}
         loadComments={noop}
       />
   );
 
   movieCard.simulate(`mouseleave`);
-  expect(onLeave.mock.calls.length).toBe(1);
+  expect(onMovieCardOut.mock.calls.length).toBe(1);
 });
 

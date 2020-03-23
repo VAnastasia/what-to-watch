@@ -10,6 +10,7 @@ it(`Should MoviePage render correctly`, () => {
       movies={films}
       loadComments={() => {}}
       comments={[]}
+      userBlock={<div></div>}
     />,
     {
       createNodeMock: () => {

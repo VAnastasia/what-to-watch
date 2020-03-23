@@ -41,9 +41,10 @@ const withActiveCard = (Component) => {
       return (
         <Component
           {...this.props}
-          activeCard={this.state.activeCard}
           onMovieCardHover={this.handleCardHover}
           onMovieCardOut={this.handleCardOut}
+          isPlayer={true}
+          activeCard={this.state.activeCard}
         />
       );
     }

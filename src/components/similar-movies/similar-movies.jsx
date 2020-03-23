@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card.jsx";
+import history from "../../history.js";
 
 const SimilarMovies = ({films, loadComments}) => {
   return (
@@ -15,16 +16,13 @@ const SimilarMovies = ({films, loadComments}) => {
                 key={film.id}
                 film={film}
                 loadComments={loadComments}
-                activeCard={0}
-                onLeave={() => {}}
-                onHover={() => {}}
               />);
           })}
         </div>
       </section>
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <a className="logo__link logo__link--light" onClick={history.goBack}>
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>

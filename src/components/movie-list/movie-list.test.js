@@ -9,9 +9,7 @@ it(`Should MovieList render correctly`, () => {
   const tree = renderer
     .create(<MovieList
       movies={films}
-      activeCard={1}
-      onMovieCardHover={noop}
-      onMovieCardOut={noop}
+      loadComments={noop}
     />,
     {
       createNodeMock: () => {

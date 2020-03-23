@@ -2,7 +2,6 @@ import React, {Fragment} from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
 // import {Link} from "react-router-dom";
-import withActiveCard from "../../hocs/with-active-card/with-active-card.jsx";
 import MovieList from "../movie-list/movie-list.jsx";
 // import GenreList from "../genre-list/genre-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
@@ -13,8 +12,6 @@ import {ActionCreator} from "../../reducers/app/app";
 import {Operation as DataOperation} from "../../reducers/data/data.js";
 import {GENRE_DEFAULT, SHOW_MOVIES_ON_CLICK} from "../../const";
 import history from "../../history.js";
-
-const MovieListWrapped = withActiveCard(MovieList);
 
 const getFiltredMovies = (movies, activeGenre) => {
   if (activeGenre !== GENRE_DEFAULT) {
@@ -98,7 +95,7 @@ const Main = ({
 
           {genreList}
 
-          <MovieListWrapped movies={films.slice(0, shownMovies)} loadComments={loadComments} />
+          <MovieList movies={films.slice(0, shownMovies)} loadComments={loadComments} />
 
           {shownMovies < films.length && <ShowMore onClick={onClickShowMore} />}
         </section>

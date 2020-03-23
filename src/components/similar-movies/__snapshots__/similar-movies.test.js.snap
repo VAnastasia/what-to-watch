@@ -23,8 +23,7 @@ exports[`Should SimilarMovies render correctly 1`] = `
         <div
           className="small-movie-card__image"
         >
-          <video
-            alt=""
+          <img
             height="175"
             width="280"
           />
@@ -45,8 +44,7 @@ exports[`Should SimilarMovies render correctly 1`] = `
         <div
           className="small-movie-card__image"
         >
-          <video
-            alt=""
+          <img
             height="175"
             width="280"
           />
@@ -67,8 +65,7 @@ exports[`Should SimilarMovies render correctly 1`] = `
         <div
           className="small-movie-card__image"
         >
-          <video
-            alt=""
+          <img
             height="175"
             width="280"
           />
@@ -89,8 +86,7 @@ exports[`Should SimilarMovies render correctly 1`] = `
         <div
           className="small-movie-card__image"
         >
-          <video
-            alt=""
+          <img
             height="175"
             width="280"
           />
@@ -111,8 +107,7 @@ exports[`Should SimilarMovies render correctly 1`] = `
         <div
           className="small-movie-card__image"
         >
-          <video
-            alt=""
+          <img
             height="175"
             width="280"
           />
@@ -135,7 +130,7 @@ exports[`Should SimilarMovies render correctly 1`] = `
     >
       <a
         className="logo__link logo__link--light"
-        href="main.html"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
