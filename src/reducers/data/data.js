@@ -24,7 +24,7 @@ const ActionCreator = {
   loadComments: (comments) => ({
     type: ActionTypes.LOAD_COMMENTS,
     payload: comments,
-  })
+  }),
 };
 
 const Operation = {
@@ -44,6 +44,15 @@ const Operation = {
     return api.get(`/comments/${id}`)
       .then((response) => {
         dispatch(ActionCreator.loadComments(response.data));
+      });
+  },
+  postComment: (comment, filmId) => (dispatch, getState, api) => {
+    return api.post(`/comments/${filmId}`, {
+      rating: comment.rating,
+      comment: comment.review,
+    })
+      .then(() => {
+        dispatch(ActionCreator.loadComments(filmId));
       });
   },
 };

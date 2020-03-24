@@ -13,6 +13,7 @@ class MoviePage extends PureComponent {
     super(props);
     this.handlePlayButtonClick = this.handlePlayButtonClick(this);
     this.handleLogoClick = this.handleLogoClick.bind(this);
+    this.handleAddReviewClick = this.handleAddReviewClick.bind(this);
   }
 
   handleLogoClick(evt) {
@@ -25,6 +26,12 @@ class MoviePage extends PureComponent {
       const {id} = this.props.film;
       history.push(`/player/${id}`);
     };
+  }
+
+  handleAddReviewClick(evt) {
+    evt.preventDefault();
+    const {id} = this.props.film;
+    history.push(`/films/${id}/review`);
   }
 
   render() {
@@ -89,7 +96,7 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  <a href="#" className="btn movie-card__button" onClick={this.handleAddReviewClick}>Add review</a>
                 </div>
               </div>
             </div>
@@ -109,7 +116,7 @@ class MoviePage extends PureComponent {
           </div>
         </section>
 
-        {similarMovies.length > 0 && <SimilarMovies films={similarMovies} loadComments={loadComments} />}
+        <SimilarMovies films={similarMovies} loadComments={loadComments} />
       </Fragment>
     );
   }
