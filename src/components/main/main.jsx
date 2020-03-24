@@ -1,15 +1,17 @@
 import React, {Fragment} from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
+// import {Link} from "react-router-dom";
 import MovieList from "../movie-list/movie-list.jsx";
-import GenreList from "../genre-list/genre-list.jsx";
-import UserBlock from "../user-block/user-block.jsx";
+// import GenreList from "../genre-list/genre-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
 import Movie from "../../adapters/movie";
 import {getGenre, getShownMovies} from "../../reducers/app/selectors";
 import {getMovies} from "../../reducers/data/selectors";
 import {ActionCreator} from "../../reducers/app/app";
+import {Operation as DataOperation} from "../../reducers/data/data.js";
 import {GENRE_DEFAULT, SHOW_MOVIES_ON_CLICK} from "../../const";
+import history from "../../history.js";
 
 const getFiltredMovies = (movies, activeGenre) => {
   if (activeGenre !== GENRE_DEFAULT) {
@@ -18,11 +20,21 @@ const getFiltredMovies = (movies, activeGenre) => {
   return movies;
 };
 
-const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies, changeShownMovies}) => {
-  const {title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
+const Main = ({
+  promoFilm,
+  userBlock,
+  movies,
+  activeGenre,
+  shownMovies,
+  changeShownMovies,
+  loadComments,
+  genreList
+}) => {
+  const {id, title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
   const films = getFiltredMovies(movies, activeGenre);
 
   const onClickShowMore = () => changeShownMovies(shownMovies + SHOW_MOVIES_ON_CLICK);
+  const handlePlayButtonClick = () => history.push(`/player/${id}`);
 
   return (
     <Fragment>
@@ -42,7 +54,7 @@ const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies,
             </a>
           </div>
 
-          <UserBlock authorizationStatus={authorizationStatus} />
+          {userBlock}
         </header>
 
         <div className="movie-card__wrap">
@@ -59,8 +71,8 @@ const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies,
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg className="0 0 19 19" width="19" height="19">
+                <button className="btn btn--play movie-card__button" type="button" onClick={handlePlayButtonClick}>
+                  <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
@@ -81,9 +93,9 @@ const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies,
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList />
+          {genreList}
 
-          <MovieList movies={films.slice(0, shownMovies)} />
+          <MovieList movies={films.slice(0, shownMovies)} loadComments={loadComments} />
 
           {shownMovies < films.length && <ShowMore onClick={onClickShowMore} />}
         </section>
@@ -108,13 +120,21 @@ const Main = ({promoFilm, authorizationStatus, movies, activeGenre, shownMovies,
 
 Main.propTypes = {
   promoFilm: propTypes.object.isRequired,
-  authorizationStatus: propTypes.string.isRequired,
   movies: propTypes.arrayOf(
       propTypes.object.isRequired
   ).isRequired,
   activeGenre: propTypes.string.isRequired,
   shownMovies: propTypes.number.isRequired,
   changeShownMovies: propTypes.func.isRequired,
+  loadComments: propTypes.func.isRequired,
+  userBlock: propTypes.oneOfType([
+    propTypes.arrayOf(propTypes.node),
+    propTypes.node
+  ]).isRequired,
+  genreList: propTypes.oneOfType([
+    propTypes.arrayOf(propTypes.node),
+    propTypes.node
+  ]).isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -126,6 +146,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeShownMovies: (amount) => {
     dispatch(ActionCreator.changeMoviesAmount(amount));
+  },
+  loadComments(id) {
+    dispatch(DataOperation.loadComments(id));
   }
 });
 

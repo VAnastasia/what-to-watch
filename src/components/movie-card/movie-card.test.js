@@ -7,10 +7,10 @@ it(`Should MovieCard render correctly`, () => {
   const tree = renderer
     .create(<MovieCard
       film={film}
-      onHover={() => {}}
-      onLeave={() => {}}
-      onMovieCardClick={() => {}}
+      onMovieCardHover={() => {}}
+      onMovieCardOut={() => {}}
       activeCard={film.id}
+      loadComments={() => {}}
     />,
     {
       createNodeMock: () => {

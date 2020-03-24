@@ -8,9 +8,9 @@ it(`Should MoviePage render correctly`, () => {
     .create(<MoviePage
       film={film}
       movies={films}
-      authorizationStatus={`AUTH`}
       loadComments={() => {}}
       comments={[]}
+      userBlock={<div></div>}
     />,
     {
       createNodeMock: () => {

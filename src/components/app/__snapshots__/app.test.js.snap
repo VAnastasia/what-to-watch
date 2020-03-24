@@ -94,11 +94,12 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
-                className="0 0 19 19"
                 height="19"
+                viewBox="0 0 19 19"
                 width="19"
               >
                 <use
@@ -215,7 +216,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -238,7 +242,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -261,7 +268,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -284,7 +294,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -307,7 +320,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>

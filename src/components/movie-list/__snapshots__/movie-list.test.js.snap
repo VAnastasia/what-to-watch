@@ -15,7 +15,10 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <video
         alt=""
+        autoPlay={true}
         height="175"
+        muted={true}
+        src=""
         width="280"
       />
     </div>
@@ -38,7 +41,10 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <video
         alt=""
+        autoPlay={true}
         height="175"
+        muted={true}
+        src=""
         width="280"
       />
     </div>
@@ -61,7 +67,10 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <video
         alt=""
+        autoPlay={true}
         height="175"
+        muted={true}
+        src=""
         width="280"
       />
     </div>
@@ -84,7 +93,10 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <video
         alt=""
+        autoPlay={true}
         height="175"
+        muted={true}
+        src=""
         width="280"
       />
     </div>
@@ -107,7 +119,10 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <video
         alt=""
+        autoPlay={true}
         height="175"
+        muted={true}
+        src=""
         width="280"
       />
     </div>

@@ -2,37 +2,29 @@ import React, {PureComponent, Fragment} from "react";
 import propTypes from "prop-types";
 import Movie from "../../adapters/movie";
 import Tabs from "../tabs/tabs.jsx";
-import UserBlock from "../user-block/user-block.jsx";
 import SimilarMovies from "../similar-movies/similar-movies.jsx";
+import withActiveTab from "../../hocs/with-active-tab/with-active-tab.jsx";
+import history from "../../history.js";
 
-const TabName = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`,
-};
+const TabsWrapped = withActiveTab(Tabs);
 
 class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
-    this.handleTabClick = this.handleTabClick.bind(this);
-
-    this.state = {
-      activeTab: TabName.OVERVIEW,
-    };
+    this.handlePlayButtonClick = this.handlePlayButtonClick(this);
+    this.handleLogoClick = this.handleLogoClick.bind(this);
   }
 
-  handleTabClick(tab) {
+  handleLogoClick(evt) {
+    evt.preventDefault();
+    history.push(`/`);
+  }
+
+  handlePlayButtonClick() {
     return () => {
-      this.setState({
-        activeTab: TabName[tab],
-      });
+      const {id} = this.props.film;
+      history.push(`/player/${id}`);
     };
-  }
-
-  componentDidMount() {
-    const {film, loadComments} = this.props;
-    const id = film.id;
-    loadComments(id);
   }
 
   render() {
@@ -46,16 +38,18 @@ class MoviePage extends PureComponent {
       year,
     } = new Movie(this.props.film);
 
-    const style = {
-      backgroundColor,
-    };
-
-    const {film, comments, authorizationStatus, movies} = this.props;
+    const {
+      film,
+      comments,
+      movies,
+      loadComments,
+      userBlock,
+    } = this.props;
     const similarMovies = movies.filter((movie) => movie.genre === genre && movie.id !== id).slice(0, 4);
 
     return (
       <Fragment>
-        <section className="movie-card movie-card--full" style={style}>
+        <section className="movie-card movie-card--full" style={{backgroundColor}}>
           <div className="movie-card__hero">
             <div className="movie-card__bg">
               <img src={backgroundImage} alt={title} />
@@ -65,14 +59,13 @@ class MoviePage extends PureComponent {
 
             <header className="page-header movie-card__head">
               <div className="logo">
-                <a href="/" className="logo__link">
+                <a href="#" className="logo__link" onClick={this.handleLogoClick}>
                   <span className="logo__letter logo__letter--1">W</span>
                   <span className="logo__letter logo__letter--2">T</span>
                   <span className="logo__letter logo__letter--3">W</span>
                 </a>
               </div>
-
-              <UserBlock authorizationStatus={authorizationStatus} />
+              {userBlock}
             </header>
 
             <div className="movie-card__wrap">
@@ -84,7 +77,7 @@ class MoviePage extends PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
+                  <button className="btn btn--play movie-card__button" type="button" onClick={this.handlePlayButtonClick}>
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
                     </svg>
@@ -108,17 +101,15 @@ class MoviePage extends PureComponent {
                 <img src={posterImage} alt={`${title} poster`} width="218" height="327" />
               </div>
 
-              <Tabs
+              <TabsWrapped
                 film={film}
-                onClick={this.handleTabClick}
-                activeTab={this.state.activeTab}
                 comments={comments}
               />
             </div>
           </div>
         </section>
 
-        <SimilarMovies films={similarMovies} activeCard={0} onClick={() => {}} />
+        {similarMovies.length > 0 && <SimilarMovies films={similarMovies} loadComments={loadComments} />}
       </Fragment>
     );
   }
@@ -126,10 +117,13 @@ class MoviePage extends PureComponent {
 
 MoviePage.propTypes = {
   film: propTypes.object.isRequired,
-  authorizationStatus: propTypes.string.isRequired,
   loadComments: propTypes.func.isRequired,
   comments: propTypes.array.isRequired,
   movies: propTypes.array.isRequired,
+  userBlock: propTypes.oneOfType([
+    propTypes.arrayOf(propTypes.node),
+    propTypes.node
+  ]).isRequired,
 };
 
 export default MoviePage;

@@ -12,7 +12,12 @@ it(`Tabs component render correctly`, () => {
         activeTab={`Overview`}
         film={film}
         comments={[]}
-      />
+      />,
+      {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -16,6 +16,7 @@ it(`Should MainScreen render correctly`, () => {
     },
     [NameSpace.DATA]: {
       movies: films,
+      promo: promoFilm,
       comments: [],
     },
     [NameSpace.USER]: {
@@ -33,6 +34,8 @@ it(`Should MainScreen render correctly`, () => {
             activeGenre={`All genres`}
             shownMovies={8}
             changeShownMovies={() => {}}
+            userBlock={<div></div>}
+            genreList={<div></div>}
           />
         </Provider>,
         {

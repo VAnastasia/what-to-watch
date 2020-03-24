@@ -6,10 +6,16 @@ import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
+import UserBlock from "../user-block/user-block.jsx";
+import GenreList from "../genre-list/genre-list.jsx";
+import FullScreenVideoPlayer from "../full-screen-video-player/full-screen-video-player.jsx";
+import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducers/user/user.js";
 import {Operation as DataOperation} from "../../reducers/data/data.js";
 import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
 import {getPromo, getMovies, getComments} from "../../reducers/data/selectors.js";
+
+const FullScreenVideoPlayerWrapped = withPlayer(FullScreenVideoPlayer);
 
 class App extends PureComponent {
   render() {
@@ -21,7 +27,8 @@ class App extends PureComponent {
             <Main
               promoFilm={promo}
               login={login}
-              authorizationStatus={authorizationStatus}
+              userBlock={<UserBlock authorizationStatus={authorizationStatus} />}
+              genreList={<GenreList />}
             />
           </Route>
           <Route exact path="/films/:id"
@@ -30,15 +37,21 @@ class App extends PureComponent {
               const film = movies.filter((movie) => movie.id === id);
               return <MoviePage
                 film={film[0]}
-                authorizationStatus={authorizationStatus}
                 comments={comments}
                 loadComments={loadComments}
                 movies={movies}
+                userBlock={<UserBlock authorizationStatus={authorizationStatus} />}
               />;
             }} />
           <Route exact path="/login">
             {authorizationStatus === `AUTH` ? <Redirect to="/" /> : <SignIn onSubmit={login} />}
           </Route>
+          <Route exact path="/player/:id"
+            render={(props) => {
+              const id = Number(props.match.params.id);
+              const film = movies.filter((movie) => movie.id === id);
+              return <FullScreenVideoPlayerWrapped film={film[0]} />;
+            }} />
         </Switch>
       </Router>
     );

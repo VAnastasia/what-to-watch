@@ -41,20 +41,7 @@ Array [
           </span>
         </a>
       </div>
-      <div
-        className="user-block"
-      >
-        <div
-          className="user-block__avatar"
-        >
-          <img
-            alt="User avatar"
-            height="63"
-            src="/img/avatar.jpg"
-            width="63"
-          />
-        </div>
-      </div>
+      <div />
     </header>
     <div
       className="movie-card__wrap"
@@ -94,11 +81,12 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
-                className="0 0 19 19"
                 height="19"
+                viewBox="0 0 19 19"
                 width="19"
               >
                 <use
@@ -142,65 +130,7 @@ Array [
       >
         Catalog
       </h2>
-      <ul
-        className="catalog__genres-list"
-      >
-        <li
-          className="catalog__genres-item catalog__genres-item--active"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            All genres
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Comedies
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Documentary
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Dramas
-          </a>
-        </li>
-      </ul>
+      <div />
       <div
         className="catalog__movies-list"
       >
@@ -215,7 +145,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -238,7 +171,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -261,7 +197,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -284,7 +223,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -307,7 +249,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
