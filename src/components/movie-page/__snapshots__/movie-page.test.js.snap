@@ -3,6 +3,11 @@
 exports[`Should MoviePage render correctly 1`] = `
 <section
   className="movie-card movie-card--full"
+  style={
+    Object {
+      "backgroundColor": undefined,
+    }
+  }
 >
   <div
     className="movie-card__hero"
@@ -10,10 +15,7 @@ exports[`Should MoviePage render correctly 1`] = `
     <div
       className="movie-card__bg"
     >
-      <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
-      />
+      <img />
     </div>
     <h1
       className="visually-hidden"
@@ -28,7 +30,8 @@ exports[`Should MoviePage render correctly 1`] = `
       >
         <a
           className="logo__link"
-          href="main.html"
+          href="#"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -47,20 +50,7 @@ exports[`Should MoviePage render correctly 1`] = `
           </span>
         </a>
       </div>
-      <div
-        className="user-block"
-      >
-        <div
-          className="user-block__avatar"
-        >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
-      </div>
+      <div />
     </header>
     <div
       className="movie-card__wrap"
@@ -70,9 +60,7 @@ exports[`Should MoviePage render correctly 1`] = `
       >
         <h2
           className="movie-card__title"
-        >
-          The Grand Budapest Hotel
-        </h2>
+        />
         <p
           className="movie-card__meta"
         >
@@ -83,15 +71,14 @@ exports[`Should MoviePage render correctly 1`] = `
           </span>
           <span
             className="movie-card__year"
-          >
-            2014
-          </span>
+          />
         </p>
         <div
           className="movie-card__buttons"
         >
           <button
             className="btn btn--play movie-card__button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -144,9 +131,8 @@ exports[`Should MoviePage render correctly 1`] = `
         className="movie-card__poster movie-card__poster--big"
       >
         <img
-          alt="The Grand Budapest Hotel poster"
+          alt="undefined poster"
           height="327"
-          src="img/the-grand-budapest-hotel-poster.jpg"
           width="218"
         />
       </div>
@@ -164,7 +150,7 @@ exports[`Should MoviePage render correctly 1`] = `
             >
               <a
                 className="movie-nav__link"
-                href="#"
+                onClick={[Function]}
               >
                 Overview
               </a>
@@ -174,7 +160,7 @@ exports[`Should MoviePage render correctly 1`] = `
             >
               <a
                 className="movie-nav__link"
-                href="#"
+                onClick={[Function]}
               >
                 Details
               </a>
@@ -184,7 +170,7 @@ exports[`Should MoviePage render correctly 1`] = `
             >
               <a
                 className="movie-nav__link"
-                href="#"
+                onClick={[Function]}
               >
                 Reviews
               </a>
@@ -210,7 +196,6 @@ exports[`Should MoviePage render correctly 1`] = `
             <span
               className="movie-rating__count"
             >
-              240
                ratings
             </span>
           </p>
@@ -234,7 +219,6 @@ exports[`Should MoviePage render correctly 1`] = `
           >
             <strong>
               Starring: 
-              Bill Murray, Edward Norton, Jude Law, Willem Dafoe
                and other
             </strong>
           </p>

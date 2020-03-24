@@ -7,7 +7,11 @@ import {TabName} from "../../const";
 const ACTIVE_CLASS = `movie-nav__item movie-nav__item--active`;
 const NO_ACTIVE_CLASS = `movie-nav__item`;
 
-const Tabs = ({film, onClick, activeTab, comments}) => {
+const setTabClassName = (activeTab, currentTab) => {
+  return activeTab === currentTab ? ACTIVE_CLASS : NO_ACTIVE_CLASS;
+};
+
+const Tabs = ({film, comments, onClick, activeTab}) => {
   const {
     genre,
     year,
@@ -20,7 +24,7 @@ const Tabs = ({film, onClick, activeTab, comments}) => {
   } = new Movie(film);
 
   const ratingFixed = rating.toFixed(1);
-  const actorList = actors.join(`, `);
+  const actorList = actors !== undefined ? actors.join(`, `) : [];
   const ratingLevel = defineLevelFilm(rating);
   const time = getRuntime(runtime);
 
@@ -28,13 +32,13 @@ const Tabs = ({film, onClick, activeTab, comments}) => {
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className={activeTab === `Overview` ? ACTIVE_CLASS : NO_ACTIVE_CLASS}>
+          <li className={setTabClassName(activeTab, `Overview`)}>
             <a className="movie-nav__link" onClick={onClick(`OVERVIEW`)}>Overview</a>
           </li>
-          <li className={activeTab === `Details` ? ACTIVE_CLASS : NO_ACTIVE_CLASS}>
+          <li className={setTabClassName(activeTab, `Details`)}>
             <a className="movie-nav__link" onClick={onClick(`DETAILS`)}>Details</a>
           </li>
-          <li className={activeTab === `Reviews` ? ACTIVE_CLASS : NO_ACTIVE_CLASS}>
+          <li className={setTabClassName(activeTab, `Reviews`)}>
             <a className="movie-nav__link" onClick={onClick(`REVIEWS`)}>Reviews</a>
           </li>
         </ul>
@@ -101,46 +105,38 @@ const Tabs = ({film, onClick, activeTab, comments}) => {
         <div className="movie-card__reviews movie-card__row">
           <div className="movie-card__reviews-col">
             {comments.map((comment, index) => {
-              if (index % 2 === 0) {
-                return (
-                  <div className="review" key={comment.id}>
-                    <blockquote className="review__quote">
-                      <p className="review__text">{comment.comment}</p>
+              return (index % 2 === 0) && (
+                <div className="review" key={comment.id}>
+                  <blockquote className="review__quote">
+                    <p className="review__text">{comment.comment}</p>
 
-                      <footer className="review__details">
-                        <cite className="review__author">{comment.user.name}</cite>
-                        <time className="review__date" dateTime={comment.date.slice(0, 10)}>{formatDate(new Date(comment.date))}</time>
-                      </footer>
-                    </blockquote>
+                    <footer className="review__details">
+                      <cite className="review__author">{comment.user.name}</cite>
+                      <time className="review__date" dateTime={comment.date.slice(0, 10)}>{formatDate(new Date(comment.date))}</time>
+                    </footer>
+                  </blockquote>
 
-                    <div className="review__rating">{comment.rating}</div>
-                  </div>
-                );
-              } else {
-                return false;
-              }
+                  <div className="review__rating">{comment.rating}</div>
+                </div>
+              );
             })}
           </div>
           <div className="movie-card__reviews-col">
             {comments.map((comment, index) => {
-              if (index % 2 === 1) {
-                return (
-                  <div className="review" key={comment.id}>
-                    <blockquote className="review__quote">
-                      <p className="review__text">{comment.comment}</p>
+              return (index % 2 === 1) && (
+                <div className="review" key={comment.id}>
+                  <blockquote className="review__quote">
+                    <p className="review__text">{comment.comment}</p>
 
-                      <footer className="review__details">
-                        <cite className="review__author">{comment.user.name}</cite>
-                        <time className="review__date" dateTime={comment.date.slice(0, 10)}>{formatDate(new Date(comment.date))}</time>
-                      </footer>
-                    </blockquote>
+                    <footer className="review__details">
+                      <cite className="review__author">{comment.user.name}</cite>
+                      <time className="review__date" dateTime={comment.date.slice(0, 10)}>{formatDate(new Date(comment.date))}</time>
+                    </footer>
+                  </blockquote>
 
-                    <div className="review__rating">{comment.rating}</div>
-                  </div>
-                );
-              } else {
-                return false;
-              }
+                  <div className="review__rating">{comment.rating}</div>
+                </div>
+              );
             })}
           </div>
         </div>

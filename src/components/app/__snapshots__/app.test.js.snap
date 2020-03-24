@@ -216,7 +216,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -239,7 +242,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -262,7 +268,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -285,7 +294,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>
@@ -308,7 +320,10 @@ Array [
           >
             <video
               alt=""
+              autoPlay={true}
               height="175"
+              muted={true}
+              src=""
               width="280"
             />
           </div>

@@ -59,16 +59,6 @@ const withPlayer = (Component) => {
       });
     }
 
-    componentDidMount() {
-      const video = this.videoRef.current;
-
-      video.onplay = () => {
-        this.setState({
-          isPlaying: true,
-        });
-      };
-    }
-
     componentDidUpdate() {
       const video = this.videoRef.current;
       if (this.state.isPlaying) {

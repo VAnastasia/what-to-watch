@@ -1,20 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import withActiveCard from "./with-active-card.jsx";
+import withActiveTab from "./with-active-tab.jsx";
 
 const MockComponent = () => {
   return <div></div>;
 };
 
-const MockComponentWrapped = withActiveCard(MockComponent);
+const MockComponentWrapped = withActiveTab(MockComponent);
 
-it(`withActiveCard is rendered correctly`, () => {
+it(`withActiveTab is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
-      activeCard={1}
-      onMovieCardHover={() => {}}
-      onMovieCardOut={() => {}}
-      isPlayer={true}
+      activeTab={`Overview`}
+      onClick={() => {}}
     />
   ), {
     createNodeMock() {

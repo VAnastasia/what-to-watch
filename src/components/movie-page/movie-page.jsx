@@ -3,33 +3,21 @@ import propTypes from "prop-types";
 import Movie from "../../adapters/movie";
 import Tabs from "../tabs/tabs.jsx";
 import SimilarMovies from "../similar-movies/similar-movies.jsx";
+import withActiveTab from "../../hocs/with-active-tab/with-active-tab.jsx";
 import history from "../../history.js";
 
-// import MovieList from "../movie-list/movie-list.jsx";
-
-const TabName = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`,
-};
+const TabsWrapped = withActiveTab(Tabs);
 
 class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
-    this.handleTabClick = this.handleTabClick.bind(this);
     this.handlePlayButtonClick = this.handlePlayButtonClick(this);
-
-    this.state = {
-      activeTab: TabName.OVERVIEW,
-    };
+    this.handleLogoClick = this.handleLogoClick.bind(this);
   }
 
-  handleTabClick(tab) {
-    return () => {
-      this.setState({
-        activeTab: TabName[tab],
-      });
-    };
+  handleLogoClick(evt) {
+    evt.preventDefault();
+    history.push(`/`);
   }
 
   handlePlayButtonClick() {
@@ -71,7 +59,7 @@ class MoviePage extends PureComponent {
 
             <header className="page-header movie-card__head">
               <div className="logo">
-                <a className="logo__link" onClick={history.goBack}>
+                <a href="#" className="logo__link" onClick={this.handleLogoClick}>
                   <span className="logo__letter logo__letter--1">W</span>
                   <span className="logo__letter logo__letter--2">T</span>
                   <span className="logo__letter logo__letter--3">W</span>
@@ -113,17 +101,15 @@ class MoviePage extends PureComponent {
                 <img src={posterImage} alt={`${title} poster`} width="218" height="327" />
               </div>
 
-              <Tabs
+              <TabsWrapped
                 film={film}
-                onClick={this.handleTabClick}
-                activeTab={this.state.activeTab}
                 comments={comments}
               />
             </div>
           </div>
         </section>
 
-        <SimilarMovies films={similarMovies} loadComments={loadComments} />
+        {similarMovies.length > 0 && <SimilarMovies films={similarMovies} loadComments={loadComments} />}
       </Fragment>
     );
   }
