@@ -9,6 +9,7 @@ it(`Tabs component render correctly`, () => {
   const tree = renderer.create(
       <Tabs
         onClick={noop}
+        loadComments={noop}
         activeTab={`Overview`}
         film={film}
         comments={[]}

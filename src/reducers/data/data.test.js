@@ -12,6 +12,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     movies: [],
     promo: {},
     comments: [],
+    errorMessage: ``,
   });
 });
 
@@ -20,6 +21,7 @@ it(`Reducer should change movies by a given value`, () => {
     movies: [],
     promo: {},
     comments: [],
+    errorMessage: ``,
   }, {
     type: ActionTypes.LOAD_FILMS,
     payload: films,
@@ -27,6 +29,7 @@ it(`Reducer should change movies by a given value`, () => {
     movies: films,
     promo: {},
     comments: [],
+    errorMessage: ``,
   });
 });
 
@@ -35,6 +38,7 @@ it(`Reducer should change promo by a given value`, () => {
     movies: films,
     promo: {},
     comments: [],
+    errorMessage: ``,
   }, {
     type: ActionTypes.LOAD_PROMO,
     payload: promoFilm,
@@ -42,6 +46,7 @@ it(`Reducer should change promo by a given value`, () => {
     movies: films,
     promo: promoFilm,
     comments: [],
+    errorMessage: ``,
   });
 });
 
@@ -50,6 +55,7 @@ it(`Reducer should change comments by a given value`, () => {
     movies: films,
     promo: promoFilm,
     comments: [],
+    errorMessage: ``,
   }, {
     type: ActionTypes.LOAD_COMMENTS,
     payload: comments,
@@ -57,6 +63,24 @@ it(`Reducer should change comments by a given value`, () => {
     movies: films,
     promo: promoFilm,
     comments: [],
+    errorMessage: ``,
+  });
+});
+
+it(`Reducer should change errorMessage by a given value`, () => {
+  expect(reducer({
+    movies: films,
+    promo: promoFilm,
+    comments: [],
+    errorMessage: ``,
+  }, {
+    type: ActionTypes.SET_ERROR,
+    payload: `error`,
+  })).toEqual({
+    movies: films,
+    promo: promoFilm,
+    comments: [],
+    errorMessage: `error`,
   });
 });
 
@@ -94,6 +118,25 @@ describe(`Operation work correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionTypes.LOAD_PROMO,
+          payload: [{fake: true}],
+        });
+      });
+  });
+
+  it(`Should make a correct API call to /comments/1`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const commentsLoader = Operation.loadComments(1);
+
+    apiMock
+      .onGet(`/comments/1`)
+      .reply(200, [{fake: true}]);
+
+    return commentsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionTypes.LOAD_COMMENTS,
           payload: [{fake: true}],
         });
       });

@@ -13,3 +13,7 @@ export const getPromo = (state) => {
 export const getComments = (state) => {
   return state[NAME_SPACE].comments;
 };
+
+export const getErrorMessage = (state) => {
+  return state[NAME_SPACE].errorMessage;
+};

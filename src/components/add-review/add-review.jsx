@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import propTypes from "prop-types";
 import Movie from "../../adapters/movie";
+import history from "../../history.js";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -9,26 +10,67 @@ class AddReview extends PureComponent {
     this.formRef = createRef();
     this.reviewRef = createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleLogoClick = this.handleLogoClick.bind(this);
+  }
+
+  handleLogoClick(evt) {
+    evt.preventDefault();
+    history.push(`/`);
+  }
+
+  handleChange() {
+    const {
+      onSendingChange,
+      onValidChange,
+      onValidateMessageChange,
+    } = this.props;
+
+    if (this.reviewRef.current.value.length < 50 || this.reviewRef.current.value > 400) {
+      onValidChange(false);
+      onValidateMessageChange(`Length of review must be more 50 and less 400`);
+      onSendingChange(false);
+    } else {
+      onValidChange(true);
+      onValidateMessageChange(``);
+    }
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
+    const {
+      onSubmit,
+      onSendingChange,
+      onValidateMessageChange,
+    } = this.props;
     const {id} = this.props.film;
 
     evt.preventDefault();
-    console.log({
-      rating: this.formRef.current.elements.rating.value,
-      review: this.reviewRef.current.value,
-    });
+    if (this.reviewRef.current.value.length < 50 || this.reviewRef.current.value > 400) {
+      onValidateMessageChange(`Length of review must be more 50 and less 400`);
+      onSendingChange(false);
+    } else {
+      onValidateMessageChange(``);
+      onSendingChange(true);
+      onSubmit({
+        rating: this.formRef.current.elements.rating.value,
+        review: this.reviewRef.current.value,
+      }, id);
+    }
+  }
 
-    onSubmit({
-      rating: this.formRef.current.elements.rating.value,
-      review: this.reviewRef.current.value,
-    }, id);
+  componentWillUnmount() {
+    const {deleteErrorMessage} = this.props;
+    deleteErrorMessage();
   }
 
   render() {
-    const {userBlock, film} = this.props;
+    const {
+      userBlock,
+      film,
+      errorMessage,
+      isSending,
+      validateMessage,
+    } = this.props;
 
     const {
       title,
@@ -47,7 +89,7 @@ class AddReview extends PureComponent {
 
           <header className="page-header">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <a href="#" className="logo__link" onClick={this.handleLogoClick}>
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -73,7 +115,12 @@ class AddReview extends PureComponent {
         </div>
 
         <div className="add-review">
-          <form action="#" className="add-review__form" onSubmit={this.handleSubmit} ref={this.formRef}>
+          <form
+            action="#"
+            className="add-review__form"
+            onSubmit={this.handleSubmit}
+            ref={this.formRef}
+          >
             <div className="rating">
               <div className="rating__stars">
                 <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
@@ -82,7 +129,7 @@ class AddReview extends PureComponent {
                 <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
                 <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked />
+                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" defaultChecked />
                 <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
                 <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
@@ -93,10 +140,27 @@ class AddReview extends PureComponent {
               </div>
             </div>
 
-            <div className="add-review__text">
-              <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" ref={this.reviewRef}></textarea>
+            <div className="sign-in__message" style={{color: `red`}}>
+              <p>{validateMessage ? validateMessage : errorMessage}</p>
+            </div>
+
+            <div className="add-review__text" style={{backgroundColor: `rgba(255, 255, 255, 0.3)`}}>
+              <textarea
+                className="add-review__textarea"
+                name="review-text"
+                id="review-text"
+                placeholder="Review text"
+                ref={this.reviewRef}
+                onChange={this.handleChange}
+              ></textarea>
               <div className="add-review__submit">
-                <button className="add-review__btn" type="submit">Post</button>
+                <button
+                  className="add-review__btn"
+                  type="submit"
+                  disabled={isSending ? `disabled` : ``}
+                >
+                  Post
+                </button>
               </div>
 
             </div>
@@ -105,7 +169,6 @@ class AddReview extends PureComponent {
       </section>
     );
   }
-
 }
 
 AddReview.propTypes = {
@@ -115,6 +178,14 @@ AddReview.propTypes = {
     propTypes.node
   ]).isRequired,
   onSubmit: propTypes.func.isRequired,
+  errorMessage: propTypes.string,
+  deleteErrorMessage: propTypes.func.isRequired,
+  isSending: propTypes.bool.isRequired,
+  isValid: propTypes.bool.isRequired,
+  validateMessage: propTypes.string.isRequired,
+  onSendingChange: propTypes.func.isRequired,
+  onValidChange: propTypes.func.isRequired,
+  onValidateMessageChange: propTypes.func.isRequired,
 };
 
 export default AddReview;

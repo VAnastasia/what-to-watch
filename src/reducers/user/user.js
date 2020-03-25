@@ -1,3 +1,6 @@
+import {BASE_URL} from "../../const";
+import history from "../../history";
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -5,10 +8,12 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  avatarUrl: ``,
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  LOAD_AVATAR: `LOAD_AVATAR`,
 };
 
 const ActionCreator = {
@@ -16,6 +21,12 @@ const ActionCreator = {
     return {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: status,
+    };
+  },
+  loadAvatar: (avatar) => {
+    return {
+      type: ActionType.LOAD_AVATAR,
+      payload: avatar,
     };
   },
 };
@@ -26,6 +37,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
       });
+    case ActionType.LOAD_AVATAR:
+      return Object.assign({}, state, {
+        avatarUrl: action.payload,
+      });
   }
 
   return state;
@@ -34,8 +49,9 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.loadAvatar(BASE_URL + response.data.avatar_url));
       })
       .catch((err) => {
         throw err;
@@ -47,8 +63,10 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.loadAvatar(BASE_URL + response.data.avatar_url));
+        history.goBack();
       });
   },
 };

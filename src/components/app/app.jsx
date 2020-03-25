@@ -10,17 +10,31 @@ import AddReview from "../add-review/add-review.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import FullScreenVideoPlayer from "../full-screen-video-player/full-screen-video-player.jsx";
+import withForm from "../../hocs/with-form/with-form.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducers/user/user.js";
-import {Operation as DataOperation} from "../../reducers/data/data.js";
-import {getAuthorizationStatus} from "../../reducers/user/selectors.js";
-import {getPromo, getMovies, getComments} from "../../reducers/data/selectors.js";
+import {Operation as DataOperation, ActionCreator} from "../../reducers/data/data.js";
+import {getAuthorizationStatus, getAvatarUrl} from "../../reducers/user/selectors.js";
+import {getPromo, getMovies, getComments, getErrorMessage} from "../../reducers/data/selectors.js";
 
+const AddReviewWrapped = withForm(AddReview);
 const FullScreenVideoPlayerWrapped = withPlayer(FullScreenVideoPlayer);
 
 class App extends PureComponent {
   render() {
-    const {promo, login, authorizationStatus, movies, comments, loadComments, postComment} = this.props;
+    const {
+      promo,
+      login,
+      authorizationStatus,
+      avatarUrl,
+      errorMessageReview,
+      movies,
+      comments,
+      loadComments,
+      postComment,
+      deleteErrorMessage,
+    } = this.props;
+
     return (
       <Router history={history}>
         <Switch>
@@ -28,7 +42,7 @@ class App extends PureComponent {
             <Main
               promoFilm={promo}
               login={login}
-              userBlock={<UserBlock authorizationStatus={authorizationStatus} />}
+              userBlock={<UserBlock authorizationStatus={authorizationStatus} avatarUrl={avatarUrl} />}
               genreList={<GenreList />}
             />
           </Route>
@@ -41,17 +55,20 @@ class App extends PureComponent {
                 comments={comments}
                 loadComments={loadComments}
                 movies={movies}
-                userBlock={<UserBlock authorizationStatus={authorizationStatus} />}
+                authorizationStatus={authorizationStatus}
+                userBlock={<UserBlock authorizationStatus={authorizationStatus} avatarUrl={avatarUrl} />}
               />;
             }} />
           <Route exact path="/films/:id/review"
             render={(props) => {
               const id = Number(props.match.params.id);
               const film = movies.filter((movie) => movie.id === id);
-              return <AddReview
+              return <AddReviewWrapped
                 film={film[0]}
-                userBlock={<UserBlock authorizationStatus={authorizationStatus} />}
+                userBlock={<UserBlock authorizationStatus={authorizationStatus} avatarUrl={avatarUrl} />}
                 onSubmit={postComment}
+                errorMessage={errorMessageReview}
+                deleteErrorMessage={deleteErrorMessage}
               />;
             }} />
           <Route exact path="/login">
@@ -79,6 +96,9 @@ App.propTypes = {
   comments: propTypes.array.isRequired,
   loadComments: propTypes.func.isRequired,
   postComment: propTypes.func.isRequired,
+  avatarUrl: propTypes.string.isRequired,
+  errorMessageReview: propTypes.string.isRequired,
+  deleteErrorMessage: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -86,6 +106,8 @@ const mapStateToProps = (state) => ({
   promo: getPromo(state),
   movies: getMovies(state),
   comments: getComments(state),
+  avatarUrl: getAvatarUrl(state),
+  errorMessageReview: getErrorMessage(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -97,7 +119,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   postComment(comment, id) {
     dispatch(DataOperation.postComment(comment, id));
-  }
+  },
+  deleteErrorMessage() {
+    dispatch(ActionCreator.setError(``));
+  },
 });
 
 export {App};

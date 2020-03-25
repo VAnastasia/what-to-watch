@@ -6,6 +6,7 @@ it(`UserBlock component render correctly`, () => {
   const tree = renderer.create(
       <UserBlock
         authorizationStatus={`AUTH`}
+        avatarUrl={`avatar`}
       />
   ).toJSON();
 
