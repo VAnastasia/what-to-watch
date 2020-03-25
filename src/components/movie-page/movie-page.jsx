@@ -13,6 +13,7 @@ class MoviePage extends PureComponent {
     super(props);
     this.handlePlayButtonClick = this.handlePlayButtonClick(this);
     this.handleLogoClick = this.handleLogoClick.bind(this);
+    this.handleAddReviewClick = this.handleAddReviewClick.bind(this);
   }
 
   handleLogoClick(evt) {
@@ -27,7 +28,22 @@ class MoviePage extends PureComponent {
     };
   }
 
+  handleAddReviewClick(evt) {
+    evt.preventDefault();
+    const {id} = this.props.film;
+    history.push(`/films/${id}/review`);
+  }
+
   render() {
+    const {
+      film,
+      comments,
+      movies,
+      loadComments,
+      userBlock,
+      authorizationStatus,
+    } = this.props;
+
     const {
       id,
       title,
@@ -38,13 +54,6 @@ class MoviePage extends PureComponent {
       year,
     } = new Movie(this.props.film);
 
-    const {
-      film,
-      comments,
-      movies,
-      loadComments,
-      userBlock,
-    } = this.props;
     const similarMovies = movies.filter((movie) => movie.genre === genre && movie.id !== id).slice(0, 4);
 
     return (
@@ -89,7 +98,9 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  {authorizationStatus === `AUTH` && (
+                    <a href="#" className="btn movie-card__button" onClick={this.handleAddReviewClick}>Add review</a>
+                  )}
                 </div>
               </div>
             </div>
@@ -104,12 +115,13 @@ class MoviePage extends PureComponent {
               <TabsWrapped
                 film={film}
                 comments={comments}
+                loadComments={loadComments}
               />
             </div>
           </div>
         </section>
 
-        {similarMovies.length > 0 && <SimilarMovies films={similarMovies} loadComments={loadComments} />}
+        <SimilarMovies films={similarMovies} loadComments={loadComments} />
       </Fragment>
     );
   }
@@ -120,6 +132,7 @@ MoviePage.propTypes = {
   loadComments: propTypes.func.isRequired,
   comments: propTypes.array.isRequired,
   movies: propTypes.array.isRequired,
+  authorizationStatus: propTypes.string.isRequired,
   userBlock: propTypes.oneOfType([
     propTypes.arrayOf(propTypes.node),
     propTypes.node

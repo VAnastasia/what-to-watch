@@ -18,9 +18,11 @@ it(`Should App render correctly`, () => {
       movies: films,
       promo: promoFilm,
       comments: [],
+      errorMessage: ``,
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
+      avatarUrl: `avatar`,
     }
   });
 
@@ -32,6 +34,8 @@ it(`Should App render correctly`, () => {
             movies={films}
             authorizationStatus={`AUTH`}
             login={() => {}}
+            avatarUrl={`avatar`}
+            errorMessageReview={`error`}
           />
         </Provider>,
         {

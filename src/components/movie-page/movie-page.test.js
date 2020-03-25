@@ -11,6 +11,7 @@ it(`Should MoviePage render correctly`, () => {
       loadComments={() => {}}
       comments={[]}
       userBlock={<div></div>}
+      authorizationStatus={`AUTH`}
     />,
     {
       createNodeMock: () => {

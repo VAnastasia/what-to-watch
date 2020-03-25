@@ -10,4 +10,6 @@ const TabName = {
   REVIEWS: `Reviews`,
 };
 
-export {MAX_COUNT_GENRES, GENRE_DEFAULT, TabName, START_SHOWN_MOVIES_AMOUNT, SHOW_MOVIES_ON_CLICK};
+const BASE_URL = `https://htmlacademy-react-3.appspot.com`;
+
+export {MAX_COUNT_GENRES, GENRE_DEFAULT, TabName, START_SHOWN_MOVIES_AMOUNT, SHOW_MOVIES_ON_CLICK, BASE_URL};
