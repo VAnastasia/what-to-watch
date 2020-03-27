@@ -5,6 +5,7 @@ const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
+  LOAD_FAVORITE_FILMS: `LOAD_FAVORITE_FILMS`,
   SET_ERROR: `SET_ERROR`,
 };
 
@@ -13,11 +14,16 @@ const initialState = {
   promo: {},
   comments: [],
   errorMessage: ``,
+  favoriteMovies: [],
 };
 
 const ActionCreator = {
   loadFilms: (films) => ({
     type: ActionTypes.LOAD_FILMS,
+    payload: films,
+  }),
+  loadFavoriteFilms: (films) => ({
+    type: ActionTypes.LOAD_FAVORITE_FILMS,
     payload: films,
   }),
   loadPromo: (promo) => ({
@@ -39,6 +45,18 @@ const Operation = {
     return api.get(`/films`)
       .then((response) => {
         dispatch(ActionCreator.loadFilms(response.data));
+      });
+  },
+  loadFavoriteFilms: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFavoriteFilms(response.data));
+      });
+  },
+  changeStatusFilm: (film, status, onSuccess) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${film.id}/${status}`, {film})
+      .then(() => {
+        onSuccess();
       });
   },
   loadPromo: () => (dispatch, getState, api) => {
@@ -73,6 +91,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.LOAD_FILMS:
       return extend(state, {movies: action.payload});
+    case ActionTypes.LOAD_FAVORITE_FILMS:
+      return extend(state, {favoriteMovies: action.payload});
     case ActionTypes.LOAD_PROMO:
       return extend(state, {promo: action.payload});
     case ActionTypes.LOAD_COMMENTS:

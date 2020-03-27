@@ -1,9 +1,7 @@
 import React, {Fragment} from "react";
 import propTypes from "prop-types";
 import {connect} from 'react-redux';
-// import {Link} from "react-router-dom";
 import MovieList from "../movie-list/movie-list.jsx";
-// import GenreList from "../genre-list/genre-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
 import Movie from "../../adapters/movie";
 import {getGenre, getShownMovies} from "../../reducers/app/selectors";
@@ -28,13 +26,25 @@ const Main = ({
   shownMovies,
   changeShownMovies,
   loadComments,
-  genreList
+  genreList,
+  loadFilms,
+  loadFavoriteFilms,
+  changeStatusFilm,
 }) => {
   const {id, title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
   const films = getFiltredMovies(movies, activeGenre);
 
   const onClickShowMore = () => changeShownMovies(shownMovies + SHOW_MOVIES_ON_CLICK);
   const handlePlayButtonClick = () => history.push(`/player/${id}`);
+  const handleStatusChange = () => {
+    const status = Number(!promoFilm.is_favorite);
+    const newFilm = Object.assign(promoFilm, {"is_favorite": !promoFilm.is_favorite});
+    const onSucces = () => {
+      loadFilms();
+      loadFavoriteFilms();
+    };
+    changeStatusFilm(newFilm, status, onSucces);
+  };
 
   return (
     <Fragment>
@@ -77,7 +87,7 @@ const Main = ({
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button className="btn btn--list movie-card__button" type="button" onClick={handleStatusChange}>
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     {!isFavorite ? <use xlinkHref="#add"></use> : <use xlinkHref="#in-list"></use>}
                   </svg>
@@ -127,6 +137,9 @@ Main.propTypes = {
   shownMovies: propTypes.number.isRequired,
   changeShownMovies: propTypes.func.isRequired,
   loadComments: propTypes.func.isRequired,
+  loadFilms: propTypes.func.isRequired,
+  loadFavoriteFilms: propTypes.func.isRequired,
+  changeStatusFilm: propTypes.func.isRequired,
   userBlock: propTypes.oneOfType([
     propTypes.arrayOf(propTypes.node),
     propTypes.node

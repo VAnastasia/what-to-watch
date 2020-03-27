@@ -11,9 +11,11 @@ const TabsWrapped = withActiveTab(Tabs);
 class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
+    this.film = new Movie(this.props.film);
     this.handlePlayButtonClick = this.handlePlayButtonClick(this);
     this.handleLogoClick = this.handleLogoClick.bind(this);
     this.handleAddReviewClick = this.handleAddReviewClick.bind(this);
+    this.handleStatusChange = this.handleStatusChange.bind(this);
   }
 
   handleLogoClick(evt) {
@@ -23,15 +25,26 @@ class MoviePage extends PureComponent {
 
   handlePlayButtonClick() {
     return () => {
-      const {id} = this.props.film;
+      const {id} = this.film;
       history.push(`/player/${id}`);
     };
   }
 
   handleAddReviewClick(evt) {
     evt.preventDefault();
-    const {id} = this.props.film;
+    const {id} = this.film;
     history.push(`/films/${id}/review`);
+  }
+
+  handleStatusChange() {
+    const {film, loadFilms, loadFavoriteFilms, changeStatusFilm} = this.props;
+    const status = Number(!film.is_favorite);
+    const newFilm = Object.assign(this.props.film, {"is_favorite": !film.is_favorite});
+    const onSucces = () => {
+      loadFilms();
+      loadFavoriteFilms();
+    };
+    changeStatusFilm(newFilm, status, onSucces);
   }
 
   render() {
@@ -52,7 +65,7 @@ class MoviePage extends PureComponent {
       posterImage,
       genre,
       year,
-    } = new Movie(this.props.film);
+    } = this.film;
 
     const similarMovies = movies.filter((movie) => movie.genre === genre && movie.id !== id).slice(0, 4);
 
@@ -92,9 +105,9 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button className="btn btn--list movie-card__button" type="button">
+                  <button className="btn btn--list movie-card__button" type="button" onClick={this.handleStatusChange}>
                     <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
+                      {!film.is_favorite ? <use xlinkHref="#add"></use> : <use xlinkHref="#in-list"></use>}
                     </svg>
                     <span>My list</span>
                   </button>
@@ -130,6 +143,9 @@ class MoviePage extends PureComponent {
 MoviePage.propTypes = {
   film: propTypes.object.isRequired,
   loadComments: propTypes.func.isRequired,
+  loadFilms: propTypes.func.isRequired,
+  loadFavoriteFilms: propTypes.func.isRequired,
+  changeStatusFilm: propTypes.func.isRequired,
   comments: propTypes.array.isRequired,
   movies: propTypes.array.isRequired,
   authorizationStatus: propTypes.string.isRequired,

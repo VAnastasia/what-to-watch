@@ -7,6 +7,7 @@ import NameSpace from "../../reducers/name-space.js";
 import {promoFilm, films} from "../../test-data";
 
 const mockStore = configureStore([]);
+const noop = () => {};
 
 it(`Should MainScreen render correctly`, () => {
   const store = mockStore({
@@ -18,6 +19,7 @@ it(`Should MainScreen render correctly`, () => {
       movies: films,
       promo: promoFilm,
       comments: [],
+      favoriteMovies: [],
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
@@ -33,9 +35,12 @@ it(`Should MainScreen render correctly`, () => {
             movies={films}
             activeGenre={`All genres`}
             shownMovies={8}
-            changeShownMovies={() => {}}
+            changeShownMovies={noop}
             userBlock={<div></div>}
             genreList={<div></div>}
+            loadFilms={noop}
+            loadFavoriteFilms={noop}
+            changeStatusFilm={noop}
           />
         </Provider>,
         {

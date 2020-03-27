@@ -3,6 +3,8 @@ import renderer from "react-test-renderer";
 import MoviePage from "./movie-page.jsx";
 import {film, films} from "../../test-data";
 
+const noop = () => {};
+
 it(`Should MoviePage render correctly`, () => {
   const tree = renderer
     .create(<MoviePage
@@ -12,6 +14,9 @@ it(`Should MoviePage render correctly`, () => {
       comments={[]}
       userBlock={<div></div>}
       authorizationStatus={`AUTH`}
+      loadFilms={noop}
+      loadFavoriteFilms={noop}
+      changeStatusFilm={noop}
     />,
     {
       createNodeMock: () => {

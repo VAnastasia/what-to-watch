@@ -19,6 +19,7 @@ it(`Should App render correctly`, () => {
       promo: promoFilm,
       comments: [],
       errorMessage: ``,
+      favoriteMovies: [],
     },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
@@ -36,6 +37,7 @@ it(`Should App render correctly`, () => {
             login={() => {}}
             avatarUrl={`avatar`}
             errorMessageReview={`error`}
+            favoriteMovies={[]}
           />
         </Provider>,
         {

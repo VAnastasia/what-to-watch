@@ -172,18 +172,6 @@ exports[`AddReview renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="sign-in__message"
-        style={
-          Object {
-            "color": "red",
-          }
-        }
-      >
-        <p>
-          error
-        </p>
-      </div>
-      <div
         className="add-review__text"
         style={
           Object {
@@ -209,6 +197,19 @@ exports[`AddReview renders correctly 1`] = `
             Post
           </button>
         </div>
+      </div>
+      <div
+        className="sign-in__message"
+        style={
+          Object {
+            "color": "red",
+            "marginTop": "30px",
+          }
+        }
+      >
+        <p>
+          error
+        </p>
       </div>
     </form>
   </div>

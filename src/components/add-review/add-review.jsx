@@ -21,19 +21,12 @@ class AddReview extends PureComponent {
 
   handleChange() {
     const {
-      onSendingChange,
       onValidChange,
       onValidateMessageChange,
     } = this.props;
 
-    if (this.reviewRef.current.value.length < 50 || this.reviewRef.current.value > 400) {
-      onValidChange(false);
-      onValidateMessageChange(`Length of review must be more 50 and less 400`);
-      onSendingChange(false);
-    } else {
-      onValidChange(true);
-      onValidateMessageChange(``);
-    }
+    onValidChange(true);
+    onValidateMessageChange(``);
   }
 
   handleSubmit(evt) {
@@ -139,11 +132,6 @@ class AddReview extends PureComponent {
                 <label className="rating__label" htmlFor="star-5">Rating 5</label>
               </div>
             </div>
-
-            <div className="sign-in__message" style={{color: `red`}}>
-              <p>{validateMessage ? validateMessage : errorMessage}</p>
-            </div>
-
             <div className="add-review__text" style={{backgroundColor: `rgba(255, 255, 255, 0.3)`}}>
               <textarea
                 className="add-review__textarea"
@@ -162,7 +150,9 @@ class AddReview extends PureComponent {
                   Post
                 </button>
               </div>
-
+            </div>
+            <div className="sign-in__message" style={{color: `red`, marginTop: `30px`}}>
+              <p>{validateMessage ? validateMessage : errorMessage}</p>
             </div>
           </form>
         </div>
