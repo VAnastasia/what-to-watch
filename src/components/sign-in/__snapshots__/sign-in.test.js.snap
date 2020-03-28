@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthScreen component render correctly 1`] = `
+exports[`SignIn component render correctly 1`] = `
 <div
   className="user-page"
 >
@@ -12,7 +12,8 @@ exports[`AuthScreen component render correctly 1`] = `
     >
       <a
         className="logo__link"
-        href="main.html"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -46,6 +47,13 @@ exports[`AuthScreen component render correctly 1`] = `
       onSubmit={[Function]}
     >
       <div
+        className="sign-in__message"
+      >
+        <p>
+          error
+        </p>
+      </div>
+      <div
         className="sign-in__fields"
       >
         <div
@@ -56,6 +64,7 @@ exports[`AuthScreen component render correctly 1`] = `
             id="user-email"
             name="user-email"
             placeholder="Email address"
+            required={true}
             type="email"
           />
           <label
@@ -73,6 +82,7 @@ exports[`AuthScreen component render correctly 1`] = `
             id="user-password"
             name="user-password"
             placeholder="Password"
+            required={true}
             type="password"
           />
           <label
@@ -103,7 +113,8 @@ exports[`AuthScreen component render correctly 1`] = `
     >
       <a
         className="logo__link logo__link--light"
-        href="main.html"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"

@@ -1,16 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should SimilarMovies render correctly 1`] = `
+exports[`MyList component render correctly 1`] = `
 <div
-  className="page-content"
+  className="user-page"
 >
+  <header
+    className="page-header user-page__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <h1
+      className="page-title user-page__title"
+    >
+      My list
+    </h1>
+    <div />
+  </header>
   <section
-    className="catalog catalog--like-this"
+    className="catalog"
   >
     <h2
-      className="catalog__title"
+      className="catalog__title visually-hidden"
     >
-      More like this
+      Catalog
     </h2>
     <div
       className="catalog__movies-list"

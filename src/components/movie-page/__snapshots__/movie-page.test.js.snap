@@ -31,7 +31,7 @@ Array [
         >
           <a
             className="logo__link"
-            href="#"
+            href="/"
             onClick={[Function]}
           >
             <span
@@ -77,8 +77,9 @@ Array [
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
+              href="/player/1"
               onClick={[Function]}
               type="button"
             >
@@ -94,9 +95,10 @@ Array [
               <span>
                 Play
               </span>
-            </button>
+            </a>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -114,7 +116,7 @@ Array [
             </button>
             <a
               className="btn movie-card__button"
-              href="#"
+              href="/films/1/review"
               onClick={[Function]}
             >
               Add review
@@ -240,7 +242,7 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="#"
+          href="/"
           onClick={[Function]}
         >
           <span

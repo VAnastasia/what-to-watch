@@ -1,19 +1,16 @@
-import {BASE_URL} from "../../const";
+import {BASE_URL, AuthorizationStatus} from "../../const";
 import history from "../../history";
-
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`,
-};
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   avatarUrl: ``,
+  errorMessage: ``,
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   LOAD_AVATAR: `LOAD_AVATAR`,
+  SET_ERROR: `SET_ERROR`,
 };
 
 const ActionCreator = {
@@ -29,6 +26,12 @@ const ActionCreator = {
       payload: avatar,
     };
   },
+  setError: (error) => {
+    return {
+      type: ActionType.SET_ERROR,
+      payload: error,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -40,6 +43,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_AVATAR:
       return Object.assign({}, state, {
         avatarUrl: action.payload,
+      });
+    case ActionType.SET_ERROR:
+      return Object.assign({}, state, {
+        errorMessage: action.payload,
       });
   }
 
@@ -67,6 +74,9 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.loadAvatar(BASE_URL + response.data.avatar_url));
         history.goBack();
+      })
+      .catch((error) => {
+        dispatch(ActionCreator.setError(error.response.data.error));
       });
   },
 };

@@ -13,6 +13,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     promo: {},
     comments: [],
     errorMessage: ``,
+    favoriteMovies: [],
   });
 });
 
@@ -22,6 +23,7 @@ it(`Reducer should change movies by a given value`, () => {
     promo: {},
     comments: [],
     errorMessage: ``,
+    favoriteMovies: [],
   }, {
     type: ActionTypes.LOAD_FILMS,
     payload: films,
@@ -30,6 +32,7 @@ it(`Reducer should change movies by a given value`, () => {
     promo: {},
     comments: [],
     errorMessage: ``,
+    favoriteMovies: [],
   });
 });
 
@@ -39,6 +42,7 @@ it(`Reducer should change promo by a given value`, () => {
     promo: {},
     comments: [],
     errorMessage: ``,
+    favoriteMovies: [],
   }, {
     type: ActionTypes.LOAD_PROMO,
     payload: promoFilm,
@@ -47,6 +51,7 @@ it(`Reducer should change promo by a given value`, () => {
     promo: promoFilm,
     comments: [],
     errorMessage: ``,
+    favoriteMovies: [],
   });
 });
 
@@ -56,6 +61,7 @@ it(`Reducer should change comments by a given value`, () => {
     promo: promoFilm,
     comments: [],
     errorMessage: ``,
+    favoriteMovies: [],
   }, {
     type: ActionTypes.LOAD_COMMENTS,
     payload: comments,
@@ -64,6 +70,7 @@ it(`Reducer should change comments by a given value`, () => {
     promo: promoFilm,
     comments: [],
     errorMessage: ``,
+    favoriteMovies: [],
   });
 });
 
@@ -73,6 +80,7 @@ it(`Reducer should change errorMessage by a given value`, () => {
     promo: promoFilm,
     comments: [],
     errorMessage: ``,
+    favoriteMovies: [],
   }, {
     type: ActionTypes.SET_ERROR,
     payload: `error`,
@@ -81,6 +89,7 @@ it(`Reducer should change errorMessage by a given value`, () => {
     promo: promoFilm,
     comments: [],
     errorMessage: `error`,
+    favoriteMovies: [],
   });
 });
 

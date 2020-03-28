@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import propTypes from "prop-types";
+import {Link} from "react-router-dom";
 import Movie from "../../adapters/movie";
-import history from "../../history.js";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -11,29 +11,21 @@ class AddReview extends PureComponent {
     this.reviewRef = createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleLogoClick = this.handleLogoClick.bind(this);
   }
 
-  handleLogoClick(evt) {
-    evt.preventDefault();
-    history.push(`/`);
+  componentWillUnmount() {
+    const {deleteErrorMessage} = this.props;
+    deleteErrorMessage();
   }
 
   handleChange() {
     const {
-      onSendingChange,
       onValidChange,
       onValidateMessageChange,
     } = this.props;
 
-    if (this.reviewRef.current.value.length < 50 || this.reviewRef.current.value > 400) {
-      onValidChange(false);
-      onValidateMessageChange(`Length of review must be more 50 and less 400`);
-      onSendingChange(false);
-    } else {
-      onValidChange(true);
-      onValidateMessageChange(``);
-    }
+    onValidChange(true);
+    onValidateMessageChange(``);
   }
 
   handleSubmit(evt) {
@@ -48,6 +40,9 @@ class AddReview extends PureComponent {
     if (this.reviewRef.current.value.length < 50 || this.reviewRef.current.value > 400) {
       onValidateMessageChange(`Length of review must be more 50 and less 400`);
       onSendingChange(false);
+    } else if (!this.formRef.current.elements.rating.value) {
+      onValidateMessageChange(`Rating is required`);
+      onSendingChange(false);
     } else {
       onValidateMessageChange(``);
       onSendingChange(true);
@@ -56,11 +51,6 @@ class AddReview extends PureComponent {
         review: this.reviewRef.current.value,
       }, id);
     }
-  }
-
-  componentWillUnmount() {
-    const {deleteErrorMessage} = this.props;
-    deleteErrorMessage();
   }
 
   render() {
@@ -89,11 +79,11 @@ class AddReview extends PureComponent {
 
           <header className="page-header">
             <div className="logo">
-              <a href="#" className="logo__link" onClick={this.handleLogoClick}>
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <nav className="breadcrumbs">
@@ -122,8 +112,8 @@ class AddReview extends PureComponent {
             ref={this.formRef}
           >
             <div className="rating">
-              <div className="rating__stars">
-                <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
+              <div className="rating__stars" onChange={this.handleChange}>
+                <input className="rating__input" id="star-1" type="radio" name="rating" value="1" />
                 <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
                 <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
@@ -139,11 +129,6 @@ class AddReview extends PureComponent {
                 <label className="rating__label" htmlFor="star-5">Rating 5</label>
               </div>
             </div>
-
-            <div className="sign-in__message" style={{color: `red`}}>
-              <p>{validateMessage ? validateMessage : errorMessage}</p>
-            </div>
-
             <div className="add-review__text" style={{backgroundColor: `rgba(255, 255, 255, 0.3)`}}>
               <textarea
                 className="add-review__textarea"
@@ -162,7 +147,9 @@ class AddReview extends PureComponent {
                   Post
                 </button>
               </div>
-
+            </div>
+            <div className="sign-in__message" style={{color: `red`, marginTop: `30px`}}>
+              <p>{validateMessage ? validateMessage : errorMessage}</p>
             </div>
           </form>
         </div>

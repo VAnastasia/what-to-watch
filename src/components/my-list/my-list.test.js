@@ -1,17 +1,19 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {MemoryRouter} from "react-router-dom";
-import SignIn from "./sign-in.jsx";
+import MyList from "./my-list";
+import {films} from "../../test-data";
 
 const noop = () => {};
 
-it(`SignIn component render correctly`, () => {
+it(`MyList component render correctly`, () => {
   const tree = renderer.create(
       <MemoryRouter>
-        <SignIn
-          onSubmit={noop}
-          deleteErrorMessage={noop}
-          errorMessage={`error`}
+        <MyList
+          userBlock={<div></div>}
+          movies={films}
+          loadComments={noop}
+          loadFavoriteFilms={noop}
         />
       </MemoryRouter>
   ).toJSON();
