@@ -130,7 +130,7 @@ exports[`Should SimilarMovies render correctly 1`] = `
     >
       <a
         className="logo__link logo__link--light"
-        href="#"
+        href="/"
         onClick={[Function]}
       >
         <span

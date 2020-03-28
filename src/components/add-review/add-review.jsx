@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import propTypes from "prop-types";
+import {Link} from "react-router-dom";
 import Movie from "../../adapters/movie";
-import history from "../../history.js";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -11,12 +11,11 @@ class AddReview extends PureComponent {
     this.reviewRef = createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleLogoClick = this.handleLogoClick.bind(this);
   }
 
-  handleLogoClick(evt) {
-    evt.preventDefault();
-    history.push(`/`);
+  componentWillUnmount() {
+    const {deleteErrorMessage} = this.props;
+    deleteErrorMessage();
   }
 
   handleChange() {
@@ -41,6 +40,9 @@ class AddReview extends PureComponent {
     if (this.reviewRef.current.value.length < 50 || this.reviewRef.current.value > 400) {
       onValidateMessageChange(`Length of review must be more 50 and less 400`);
       onSendingChange(false);
+    } else if (!this.formRef.current.elements.rating.value) {
+      onValidateMessageChange(`Rating is required`);
+      onSendingChange(false);
     } else {
       onValidateMessageChange(``);
       onSendingChange(true);
@@ -49,11 +51,6 @@ class AddReview extends PureComponent {
         review: this.reviewRef.current.value,
       }, id);
     }
-  }
-
-  componentWillUnmount() {
-    const {deleteErrorMessage} = this.props;
-    deleteErrorMessage();
   }
 
   render() {
@@ -82,11 +79,11 @@ class AddReview extends PureComponent {
 
           <header className="page-header">
             <div className="logo">
-              <a href="#" className="logo__link" onClick={this.handleLogoClick}>
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <nav className="breadcrumbs">
@@ -115,8 +112,8 @@ class AddReview extends PureComponent {
             ref={this.formRef}
           >
             <div className="rating">
-              <div className="rating__stars">
-                <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
+              <div className="rating__stars" onChange={this.handleChange}>
+                <input className="rating__input" id="star-1" type="radio" name="rating" value="1" />
                 <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
                 <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />

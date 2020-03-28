@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {MemoryRouter} from "react-router-dom";
 import Main from "./main.jsx";
 import NameSpace from "../../reducers/name-space.js";
 import {promoFilm, films} from "../../test-data";
@@ -29,19 +30,21 @@ it(`Should MainScreen render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            promoFilm={promoFilm}
-            authorizationStatus={`AUTH`}
-            movies={films}
-            activeGenre={`All genres`}
-            shownMovies={8}
-            changeShownMovies={noop}
-            userBlock={<div></div>}
-            genreList={<div></div>}
-            loadFilms={noop}
-            loadFavoriteFilms={noop}
-            changeStatusFilm={noop}
-          />
+          <MemoryRouter>
+            <Main
+              promoFilm={promoFilm}
+              authorizationStatus={`AUTH`}
+              movies={films}
+              activeGenre={`All genres`}
+              shownMovies={8}
+              changeShownMovies={noop}
+              userBlock={<div></div>}
+              genreList={<div></div>}
+              loadFilms={noop}
+              loadFavoriteFilms={noop}
+              changeStatusFilm={noop}
+            />
+          </MemoryRouter>
         </Provider>,
         {
           createNodeMock: () => {

@@ -24,6 +24,7 @@ it(`Should App render correctly`, () => {
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
       avatarUrl: `avatar`,
+      errorMessage: ``
     }
   });
 
@@ -37,6 +38,7 @@ it(`Should App render correctly`, () => {
             login={() => {}}
             avatarUrl={`avatar`}
             errorMessageReview={`error`}
+            errorMessageAuth={`error`}
             favoriteMovies={[]}
           />
         </Provider>,

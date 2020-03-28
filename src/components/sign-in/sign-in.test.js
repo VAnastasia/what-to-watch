@@ -1,14 +1,19 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {MemoryRouter} from "react-router-dom";
 import SignIn from "./sign-in.jsx";
 
 const noop = () => {};
 
-it(`AuthScreen component render correctly`, () => {
+it(`SignIn component render correctly`, () => {
   const tree = renderer.create(
-      <SignIn
-        onSubmit={noop}
-      />
+      <MemoryRouter>
+        <SignIn
+          onSubmit={noop}
+          deleteErrorMessage={noop}
+          errorMessage={`error`}
+        />
+      </MemoryRouter>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

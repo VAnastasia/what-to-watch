@@ -32,7 +32,7 @@ exports[`AddReview renders correctly 1`] = `
       >
         <a
           className="logo__link"
-          href="#"
+          href="/"
           onClick={[Function]}
         >
           <span
@@ -102,6 +102,7 @@ exports[`AddReview renders correctly 1`] = `
       >
         <div
           className="rating__stars"
+          onChange={[Function]}
         >
           <input
             className="rating__input"

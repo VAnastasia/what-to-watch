@@ -9,3 +9,7 @@ export const getAuthorizationStatus = (state) => {
 export const getAvatarUrl = (state) => {
   return state[NAME_SPACE].avatarUrl;
 };
+
+export const getErrorMessage = (state) => {
+  return state[NAME_SPACE].errorMessage;
+};

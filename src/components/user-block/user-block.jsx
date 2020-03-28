@@ -1,11 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import propTypes from "prop-types";
+import {AuthorizationStatus} from "../../const";
 
 const UserBlock = ({authorizationStatus, avatarUrl}) => {
   return (
     <div className="user-block">
-      {authorizationStatus === `AUTH` ? (
+      {authorizationStatus === AuthorizationStatus.AUTH ? (
         <Link to="/mylist">
           <div className="user-block__avatar">
             <img src={avatarUrl} alt="User avatar" width="63" height="63" />

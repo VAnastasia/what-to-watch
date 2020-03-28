@@ -35,6 +35,8 @@ const withActiveCard = (Component) => {
 
     componentWillUnmount() {
       clearTimeout(this.timer);
+      this.handleCardHover = null;
+      this.handleCardOut = null;
     }
 
     render() {
