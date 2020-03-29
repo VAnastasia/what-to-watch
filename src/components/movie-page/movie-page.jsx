@@ -15,6 +15,7 @@ const MoviePage = ({
   comments,
   movies,
   loadComments,
+  loadPromo,
   userBlock,
   authorizationStatus,
   loadFilms,
@@ -41,6 +42,7 @@ const MoviePage = ({
     const status = Number(!film.is_favorite);
     const newFilm = Object.assign(film, {"is_favorite": !film.is_favorite});
     const onSucces = () => {
+      loadPromo();
       loadFilms();
       loadFavoriteFilms();
     };
@@ -138,6 +140,7 @@ MoviePage.propTypes = {
   loadComments: propTypes.func.isRequired,
   loadFilms: propTypes.func.isRequired,
   loadFavoriteFilms: propTypes.func.isRequired,
+  loadPromo: propTypes.func.isRequired,
   changeStatusFilm: propTypes.func.isRequired,
   comments: propTypes.array.isRequired,
   movies: propTypes.array.isRequired,

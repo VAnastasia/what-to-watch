@@ -32,7 +32,7 @@ it(`Should MainScreen render correctly`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <Main
-              promoFilm={promoFilm}
+              promo={promoFilm}
               authorizationStatus={`AUTH`}
               movies={films}
               activeGenre={`All genres`}
@@ -43,6 +43,7 @@ it(`Should MainScreen render correctly`, () => {
               loadFilms={noop}
               loadFavoriteFilms={noop}
               changeStatusFilm={noop}
+              loadComments={noop}
             />
           </MemoryRouter>
         </Provider>,

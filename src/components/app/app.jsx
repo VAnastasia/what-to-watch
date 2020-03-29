@@ -16,8 +16,11 @@ import withForm from "../../hocs/with-form/with-form.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation, ActionCreator as ActionCreatorAuth} from "../../reducers/user/user.js";
 import {Operation as DataOperation, ActionCreator} from "../../reducers/data/data.js";
+import {ActionCreator as ActionCreatorApp} from "../../reducers/app/app.js";
 import {getAuthorizationStatus, getAvatarUrl, getErrorMessage as getErrorAuth} from "../../reducers/user/selectors.js";
-import {getMovies, getComments, getErrorMessage, getFavoriteMovies} from "../../reducers/data/selectors.js";
+import {getMovies, getComments, getErrorMessage, getFavoriteMovies, getPromo} from "../../reducers/data/selectors.js";
+import {getGenre, getShownMovies} from "../../reducers/app/selectors.js";
+
 import {AuthorizationStatus} from "../../const";
 
 const AddReviewWrapped = withForm(AddReview);
@@ -31,6 +34,7 @@ const App = (
       errorMessageReview,
       errorMessageAuth,
       movies,
+      promo,
       favoriteMovies,
       comments,
       loadComments,
@@ -38,19 +42,32 @@ const App = (
       deleteErrorMessage,
       deleteErrorMessageAuth,
       loadFilms,
+      loadPromo,
       loadFavoriteFilms,
       changeStatusFilm,
+      activeGenre,
+      changeGenre,
+      shownMovies,
+      changeShownMovies,
     }
 ) => {
-
   return (
     <Router history={history}>
       <Switch>
         <Route exact path="/">
           <Main
-            login={login}
+            loadComments={loadComments}
+            loadFilms={loadFilms}
+            loadFavoriteFilms={loadFavoriteFilms}
+            changeStatusFilm={changeStatusFilm}
+            promo={promo}
+            movies={movies}
+            activeGenre={activeGenre}
+            shownMovies={shownMovies}
+            changeShownMovies={changeShownMovies}
+            authorizationStatus={authorizationStatus}
             userBlock={<UserBlock authorizationStatus={authorizationStatus} avatarUrl={avatarUrl} />}
-            genreList={<GenreList />}
+            genreList={<GenreList activeGenre={activeGenre} movies={movies} changeGenre={changeGenre} />}
           />
         </Route>
         <Route exact path="/films/:id"
@@ -61,6 +78,7 @@ const App = (
               film={film[0]}
               comments={comments}
               loadComments={loadComments}
+              loadPromo={loadPromo}
               movies={movies}
               loadFilms={loadFilms}
               loadFavoriteFilms={loadFavoriteFilms}
@@ -126,10 +144,13 @@ App.propTypes = {
   favoriteMovies: propTypes.arrayOf(
       propTypes.object.isRequired
   ).isRequired,
+  activeGenre: propTypes.string.isRequired,
+  changeGenre: propTypes.func.isRequired,
   comments: propTypes.array.isRequired,
   loadComments: propTypes.func.isRequired,
   loadFilms: propTypes.func.isRequired,
   loadFavoriteFilms: propTypes.func.isRequired,
+  loadPromo: propTypes.func.isRequired,
   postComment: propTypes.func.isRequired,
   avatarUrl: propTypes.string.isRequired,
   errorMessageReview: propTypes.string.isRequired,
@@ -137,6 +158,9 @@ App.propTypes = {
   deleteErrorMessage: propTypes.func.isRequired,
   deleteErrorMessageAuth: propTypes.func.isRequired,
   changeStatusFilm: propTypes.func.isRequired,
+  promo: propTypes.object.isRequired,
+  shownMovies: propTypes.number.isRequired,
+  changeShownMovies: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -147,32 +171,44 @@ const mapStateToProps = (state) => ({
   avatarUrl: getAvatarUrl(state),
   errorMessageReview: getErrorMessage(state),
   errorMessageAuth: getErrorAuth(state),
+  activeGenre: getGenre(state),
+  promo: getPromo(state),
+  shownMovies: getShownMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
+  login: (authData) => {
     dispatch(UserOperation.login(authData));
   },
-  loadFilms() {
+  loadFilms: () => {
     dispatch(DataOperation.loadFilms());
   },
-  loadFavoriteFilms() {
+  loadFavoriteFilms: () => {
     dispatch(DataOperation.loadFavoriteFilms());
   },
-  changeStatusFilm(id, status, onSuccess) {
+  changeStatusFilm: (id, status, onSuccess) => {
     dispatch(DataOperation.changeStatusFilm(id, status, onSuccess));
   },
-  loadComments(id) {
+  loadComments: (id) => {
     dispatch(DataOperation.loadComments(id));
   },
-  postComment(comment, id) {
+  postComment: (comment, id) => {
     dispatch(DataOperation.postComment(comment, id));
   },
-  deleteErrorMessage() {
+  deleteErrorMessage: () => {
     dispatch(ActionCreator.setError(``));
   },
-  deleteErrorMessageAuth() {
+  deleteErrorMessageAuth: () => {
     dispatch(ActionCreatorAuth.setError(``));
+  },
+  loadPromo: () => {
+    dispatch(DataOperation.loadPromo());
+  },
+  changeGenre: (genre) => {
+    dispatch(ActionCreatorApp.changeGenre(genre));
+  },
+  changeShownMovies: (amount) => {
+    dispatch(ActionCreator.changeMoviesAmount(amount));
   },
 });
 

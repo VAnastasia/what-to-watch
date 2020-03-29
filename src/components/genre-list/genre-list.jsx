@@ -1,9 +1,5 @@
 import React from "react";
 import propTypes from "prop-types";
-import {connect} from 'react-redux';
-import {getGenre} from "../../reducers/app/selectors";
-import {getMovies} from "../../reducers/data/selectors";
-import {ActionCreator} from "../../reducers/app/app";
 import {MAX_COUNT_GENRES, GENRE_DEFAULT} from "../../const";
 
 const GenreList = ({activeGenre, movies, changeGenre}) => {
@@ -36,16 +32,4 @@ GenreList.propTypes = {
   ).isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  activeGenre: getGenre(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  changeGenre: (genre) => {
-    dispatch(ActionCreator.changeGenre(genre));
-  }
-});
-
-export {GenreList};
-export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
+export default GenreList;
