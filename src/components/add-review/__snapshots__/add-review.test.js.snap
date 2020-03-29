@@ -5,7 +5,7 @@ exports[`AddReview renders correctly 1`] = `
   className="movie-card movie-card--full"
   style={
     Object {
-      "backgroundColor": undefined,
+      "backgroundColor": "#FDFDFC",
     }
   }
 >
@@ -17,6 +17,7 @@ exports[`AddReview renders correctly 1`] = `
     >
       <img
         alt="The Grand Budapest Hotel"
+        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg"
       />
     </div>
     <h1
@@ -64,7 +65,9 @@ exports[`AddReview renders correctly 1`] = `
             <a
               className="breadcrumbs__link"
               href="movie-page.html"
-            />
+            >
+              Snatch
+            </a>
           </li>
           <li
             className="breadcrumbs__item"
@@ -83,8 +86,9 @@ exports[`AddReview renders correctly 1`] = `
       className="movie-card__poster movie-card__poster--small"
     >
       <img
-        alt="undefined poster"
+        alt="Snatch poster"
         height="327"
+        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg"
         width="218"
       />
     </div>

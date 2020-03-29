@@ -6,7 +6,7 @@ Array [
     className="movie-card movie-card--full"
     style={
       Object {
-        "backgroundColor": undefined,
+        "backgroundColor": "#FDFDFC",
       }
     }
   >
@@ -16,7 +16,10 @@ Array [
       <div
         className="movie-card__bg"
       >
-        <img />
+        <img
+          alt="Snatch"
+          src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg"
+        />
       </div>
       <h1
         className="visually-hidden"
@@ -61,18 +64,22 @@ Array [
         >
           <h2
             className="movie-card__title"
-          />
+          >
+            Snatch
+          </h2>
           <p
             className="movie-card__meta"
           >
             <span
               className="movie-card__genre"
             >
-              drama
+              Comedy
             </span>
             <span
               className="movie-card__year"
-            />
+            >
+              2000
+            </span>
           </p>
           <div
             className="movie-card__buttons"
@@ -135,8 +142,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="undefined poster"
+            alt="Snatch poster"
             height="327"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg"
             width="218"
           />
         </div>
@@ -187,7 +195,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              8.9
+              0.2
             </div>
             <p
               className="movie-rating__meta"
@@ -195,11 +203,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Very good
+                Bad
               </span>
               <span
                 className="movie-rating__count"
               >
+                716577
                  ratings
               </span>
             </p>
@@ -208,14 +217,14 @@ Array [
             className="movie-card__text"
           >
             <p>
-              In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+              Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Wes Andreson
+                Guy Ritchie
               </strong>
             </p>
             <p
@@ -223,6 +232,7 @@ Array [
             >
               <strong>
                 Starring: 
+                Jason Statham, Brad Pitt, Benicio Del Toro
                  and other
               </strong>
             </p>
@@ -234,6 +244,119 @@ Array [
   <div
     className="page-content"
   >
+    <section
+      className="catalog catalog--like-this"
+    >
+      <h2
+        className="catalog__title"
+      >
+        More like this
+      </h2>
+      <div
+        className="catalog__movies-list"
+      >
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Snatch"
+              height="175"
+              src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              Snatch
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Snatch"
+              height="175"
+              src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              Snatch
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Snatch"
+              height="175"
+              src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              Snatch
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <img
+              alt="Snatch"
+              height="175"
+              src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+            >
+              Snatch
+            </a>
+          </h3>
+        </article>
+      </div>
+    </section>
     <footer
       className="page-footer"
     >

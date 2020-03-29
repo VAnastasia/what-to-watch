@@ -21,3 +21,7 @@ export const getComments = (state) => {
 export const getErrorMessage = (state) => {
   return state[NAME_SPACE].errorMessage;
 };
+
+export const getIsLoadMovies = (state) => {
+  return state[NAME_SPACE].isLoadMovies;
+};

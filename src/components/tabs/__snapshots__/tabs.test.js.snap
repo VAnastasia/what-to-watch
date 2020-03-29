@@ -45,7 +45,7 @@ exports[`Tabs component render correctly 1`] = `
     <div
       className="movie-rating__score"
     >
-      8.9
+      0.2
     </div>
     <p
       className="movie-rating__meta"
@@ -53,11 +53,12 @@ exports[`Tabs component render correctly 1`] = `
       <span
         className="movie-rating__level"
       >
-        Very good
+        Bad
       </span>
       <span
         className="movie-rating__count"
       >
+        716577
          ratings
       </span>
     </p>
@@ -66,14 +67,14 @@ exports[`Tabs component render correctly 1`] = `
     className="movie-card__text"
   >
     <p>
-      In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege. Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+      Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers and supposedly Jewish jewelers fight to track down a priceless stolen diamond.
     </p>
     <p
       className="movie-card__director"
     >
       <strong>
         Director: 
-        Wes Andreson
+        Guy Ritchie
       </strong>
     </p>
     <p
@@ -81,6 +82,7 @@ exports[`Tabs component render correctly 1`] = `
     >
       <strong>
         Starring: 
+        Jason Statham, Brad Pitt, Benicio Del Toro
          and other
       </strong>
     </p>

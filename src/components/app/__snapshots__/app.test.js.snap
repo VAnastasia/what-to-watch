@@ -8,7 +8,10 @@ Array [
     <div
       className="movie-card__bg"
     >
-      <img />
+      <img
+        alt="Snatch"
+        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Snatch.jpg"
+      />
     </div>
     <h1
       className="visually-hidden"
@@ -73,6 +76,7 @@ Array [
           <img
             alt="poster"
             height="327"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Snatch.jpg"
             width="218"
           />
         </div>
@@ -81,18 +85,22 @@ Array [
         >
           <h2
             className="movie-card__title"
-          />
+          >
+            Snatch
+          </h2>
           <p
             className="movie-card__meta"
           >
             <span
               className="movie-card__genre"
             >
-              drama
+              Comedy
             </span>
             <span
               className="movie-card__year"
-            />
+            >
+              2000
+            </span>
           </p>
           <div
             className="movie-card__buttons"
@@ -172,40 +180,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Comedies
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Documentary
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Dramas
+            Comedy
           </a>
         </li>
       </ul>
@@ -226,6 +201,7 @@ Array [
               autoPlay={true}
               height="175"
               muted={true}
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
               src=""
               width="280"
             />
@@ -235,7 +211,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-            />
+            >
+              Snatch
+            </a>
           </h3>
         </article>
         <article
@@ -252,6 +230,7 @@ Array [
               autoPlay={true}
               height="175"
               muted={true}
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
               src=""
               width="280"
             />
@@ -261,7 +240,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-            />
+            >
+              Snatch
+            </a>
           </h3>
         </article>
         <article
@@ -278,6 +259,7 @@ Array [
               autoPlay={true}
               height="175"
               muted={true}
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
               src=""
               width="280"
             />
@@ -287,7 +269,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-            />
+            >
+              Snatch
+            </a>
           </h3>
         </article>
         <article
@@ -304,6 +288,7 @@ Array [
               autoPlay={true}
               height="175"
               muted={true}
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
               src=""
               width="280"
             />
@@ -313,7 +298,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-            />
+            >
+              Snatch
+            </a>
           </h3>
         </article>
         <article
@@ -330,6 +317,7 @@ Array [
               autoPlay={true}
               height="175"
               muted={true}
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
               src=""
               width="280"
             />
@@ -339,7 +327,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-            />
+            >
+              Snatch
+            </a>
           </h3>
         </article>
       </div>
