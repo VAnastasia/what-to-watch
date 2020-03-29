@@ -4,7 +4,6 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import App from "./components/app/app.jsx";
-// import filmDetails from "./mocks/film-details";
 import {reducer} from "./reducers/reducer.js";
 import {Operation as DataOperation} from "./reducers/data/data";
 import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducers/user/user";

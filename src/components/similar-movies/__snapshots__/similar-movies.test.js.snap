@@ -24,7 +24,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
           className="small-movie-card__image"
         >
           <img
+            alt="Snatch"
             height="175"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
             width="280"
           />
         </div>
@@ -33,7 +35,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
         >
           <a
             className="small-movie-card__link"
-          />
+          >
+            Snatch
+          </a>
         </h3>
       </article>
       <article
@@ -45,7 +49,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
           className="small-movie-card__image"
         >
           <img
+            alt="Snatch"
             height="175"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
             width="280"
           />
         </div>
@@ -54,7 +60,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
         >
           <a
             className="small-movie-card__link"
-          />
+          >
+            Snatch
+          </a>
         </h3>
       </article>
       <article
@@ -66,7 +74,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
           className="small-movie-card__image"
         >
           <img
+            alt="Snatch"
             height="175"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
             width="280"
           />
         </div>
@@ -75,7 +85,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
         >
           <a
             className="small-movie-card__link"
-          />
+          >
+            Snatch
+          </a>
         </h3>
       </article>
       <article
@@ -87,7 +99,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
           className="small-movie-card__image"
         >
           <img
+            alt="Snatch"
             height="175"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
             width="280"
           />
         </div>
@@ -96,7 +110,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
         >
           <a
             className="small-movie-card__link"
-          />
+          >
+            Snatch
+          </a>
         </h3>
       </article>
       <article
@@ -108,7 +124,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
           className="small-movie-card__image"
         >
           <img
+            alt="Snatch"
             height="175"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
             width="280"
           />
         </div>
@@ -117,7 +135,9 @@ exports[`Should SimilarMovies render correctly 1`] = `
         >
           <a
             className="small-movie-card__link"
-          />
+          >
+            Snatch
+          </a>
         </h3>
       </article>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {GenreList} from "./genre-list.jsx";
+import GenreList from "./genre-list.jsx";
 import {films} from "../../test-data";
 
 it(`GenreList renders correctly`, () => {

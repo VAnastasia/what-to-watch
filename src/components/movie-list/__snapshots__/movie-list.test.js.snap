@@ -18,6 +18,7 @@ exports[`Should MovieList render correctly 1`] = `
         autoPlay={true}
         height="175"
         muted={true}
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
         src=""
         width="280"
       />
@@ -27,7 +28,9 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-      />
+      >
+        Snatch
+      </a>
     </h3>
   </article>
   <article
@@ -44,6 +47,7 @@ exports[`Should MovieList render correctly 1`] = `
         autoPlay={true}
         height="175"
         muted={true}
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
         src=""
         width="280"
       />
@@ -53,7 +57,9 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-      />
+      >
+        Snatch
+      </a>
     </h3>
   </article>
   <article
@@ -70,6 +76,7 @@ exports[`Should MovieList render correctly 1`] = `
         autoPlay={true}
         height="175"
         muted={true}
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
         src=""
         width="280"
       />
@@ -79,7 +86,9 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-      />
+      >
+        Snatch
+      </a>
     </h3>
   </article>
   <article
@@ -96,6 +105,7 @@ exports[`Should MovieList render correctly 1`] = `
         autoPlay={true}
         height="175"
         muted={true}
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
         src=""
         width="280"
       />
@@ -105,7 +115,9 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-      />
+      >
+        Snatch
+      </a>
     </h3>
   </article>
   <article
@@ -122,6 +134,7 @@ exports[`Should MovieList render correctly 1`] = `
         autoPlay={true}
         height="175"
         muted={true}
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/snatch.jpg"
         src=""
         width="280"
       />
@@ -131,7 +144,9 @@ exports[`Should MovieList render correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-      />
+      >
+        Snatch
+      </a>
     </h3>
   </article>
 </div>

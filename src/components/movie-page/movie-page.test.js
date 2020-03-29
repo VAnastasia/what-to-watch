@@ -19,6 +19,7 @@ it(`Should MoviePage render correctly`, () => {
             authorizationStatus={`AUTH`}
             loadFilms={noop}
             loadFavoriteFilms={noop}
+            loadPromo={noop}
             changeStatusFilm={noop}
           />
         </MemoryRouter>,

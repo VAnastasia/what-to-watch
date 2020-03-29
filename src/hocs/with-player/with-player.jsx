@@ -42,7 +42,15 @@ const withPlayer = (Component) => {
 
     handleFullScreen() {
       const video = this.videoRef.current;
-      video.requestFullscreen();
+      if (video.mozRequestFullScreen) {
+        video.mozRequestFullScreen();
+      } else if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
     }
 
     handleLoadedMetadata(evt) {

@@ -1,15 +1,9 @@
 import React, {Fragment} from "react";
 import propTypes from "prop-types";
-import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import MovieList from "../movie-list/movie-list.jsx";
 import ShowMore from "../show-more/show-more.jsx";
 import Movie from "../../adapters/movie";
-import {getGenre, getShownMovies} from "../../reducers/app/selectors";
-import {getMovies} from "../../reducers/data/selectors";
-import {getAuthorizationStatus} from "../../reducers/user/selectors";
-import {ActionCreator} from "../../reducers/app/app";
-import {Operation as DataOperation} from "../../reducers/data/data";
 import {GENRE_DEFAULT, SHOW_MOVIES_ON_CLICK, AuthorizationStatus} from "../../const";
 import history from "../../history";
 
@@ -20,36 +14,42 @@ const getFiltredMovies = (movies, activeGenre) => {
   return movies;
 };
 
-const Main = ({
-  promoFilm,
-  userBlock,
-  movies,
-  activeGenre,
-  shownMovies,
-  changeShownMovies,
-  loadComments,
-  genreList,
-  loadFilms,
-  loadFavoriteFilms,
-  changeStatusFilm,
-  authorizationStatus,
-}) => {
-  const {id, title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promoFilm);
-  const films = getFiltredMovies(movies, activeGenre);
+const Main = (
+    {
+      promo,
+      userBlock,
+      movies,
+      activeGenre,
+      shownMovies,
+      loadComments,
+      genreList,
+      changeShownMovies,
+      authorizationStatus,
+      loadFilms,
+      loadFavoriteFilms,
+      changeStatusFilm,
+    }
+) => {
+  const handleClickShowMore = () => {
+    changeShownMovies(shownMovies + SHOW_MOVIES_ON_CLICK);
+  };
 
-  const onClickShowMore = () => changeShownMovies(shownMovies + SHOW_MOVIES_ON_CLICK);
   const handleStatusChange = () => {
     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
       history.push(`/login`);
+      return;
     }
-    const status = Number(!promoFilm.is_favorite);
-    const newFilm = Object.assign(promoFilm, {"is_favorite": !promoFilm.is_favorite});
+    const status = Number(!promo.is_favorite);
+    const newFilm = Object.assign(promo, {"is_favorite": !promo.is_favorite});
     const onSucces = () => {
       loadFilms();
       loadFavoriteFilms();
     };
     changeStatusFilm(newFilm, status, onSucces);
   };
+
+  const {id, title, genre, year, backgroundImage, posterImage, isFavorite} = new Movie(promo);
+  const films = getFiltredMovies(movies, activeGenre);
 
   return (
     <Fragment>
@@ -112,7 +112,7 @@ const Main = ({
 
           <MovieList movies={films.slice(0, shownMovies)} loadComments={loadComments} />
 
-          {shownMovies < films.length && <ShowMore onClick={onClickShowMore} />}
+          {shownMovies < films.length && <ShowMore onClick={handleClickShowMore} />}
         </section>
 
         <footer className="page-footer">
@@ -134,9 +134,45 @@ const Main = ({
 };
 
 Main.propTypes = {
-  promoFilm: propTypes.object.isRequired,
+  promo: propTypes.shape({
+    "id": propTypes.number,
+    "name": propTypes.string,
+    "poster_image": propTypes.string,
+    "preview_image": propTypes.string,
+    "background_image": propTypes.string,
+    "background_color": propTypes.string,
+    "description": propTypes.string,
+    "rating": propTypes.number,
+    "scores_count": propTypes.number,
+    "director": propTypes.string,
+    "starring": propTypes.arrayOf(propTypes.string),
+    "run_time": propTypes.number,
+    "genre": propTypes.string,
+    "released": propTypes.number,
+    "is_favorite": propTypes.bool,
+    "video_link": propTypes.string,
+    "preview_video_link": propTypes.string,
+  }),
   movies: propTypes.arrayOf(
-      propTypes.object.isRequired
+      propTypes.shape({
+        "id": propTypes.number.isRequired,
+        "name": propTypes.string.isRequired,
+        "poster_image": propTypes.string.isRequired,
+        "preview_image": propTypes.string.isRequired,
+        "background_image": propTypes.string.isRequired,
+        "background_color": propTypes.string.isRequired,
+        "description": propTypes.string.isRequired,
+        "rating": propTypes.number.isRequired,
+        "scores_count": propTypes.number.isRequired,
+        "director": propTypes.string.isRequired,
+        "starring": propTypes.arrayOf(propTypes.string).isRequired,
+        "run_time": propTypes.number.isRequired,
+        "genre": propTypes.string.isRequired,
+        "released": propTypes.number.isRequired,
+        "is_favorite": propTypes.bool.isRequired,
+        "video_link": propTypes.string.isRequired,
+        "preview_video_link": propTypes.string.isRequired,
+      })
   ).isRequired,
   activeGenre: propTypes.string.isRequired,
   shownMovies: propTypes.number.isRequired,
@@ -156,21 +192,4 @@ Main.propTypes = {
   authorizationStatus: propTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  shownMovies: getShownMovies(state),
-  activeGenre: getGenre(state),
-  authorizationStatus: getAuthorizationStatus(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  changeShownMovies: (amount) => {
-    dispatch(ActionCreator.changeMoviesAmount(amount));
-  },
-  loadComments(id) {
-    dispatch(DataOperation.loadComments(id));
-  }
-});
-
-export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;
