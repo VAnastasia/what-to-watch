@@ -36,6 +36,7 @@ const MoviePage = ({
   const handleStatusChange = () => {
     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
       history.push(`/login`);
+      return;
     }
     const status = Number(!film.is_favorite);
     const newFilm = Object.assign(film, {"is_favorite": !film.is_favorite});

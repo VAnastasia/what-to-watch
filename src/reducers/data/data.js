@@ -81,7 +81,6 @@ const Operation = {
         dispatch(ActionCreator.setError(``));
       })
       .catch(() => {
-        // dispatch(ActionCreator.setError(error.response.data.error));
         dispatch(ActionCreator.setError(`Something wrong. Try again`));
       });
   },

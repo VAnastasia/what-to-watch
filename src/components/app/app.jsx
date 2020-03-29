@@ -17,7 +17,7 @@ import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation, ActionCreator as ActionCreatorAuth} from "../../reducers/user/user.js";
 import {Operation as DataOperation, ActionCreator} from "../../reducers/data/data.js";
 import {getAuthorizationStatus, getAvatarUrl, getErrorMessage as getErrorAuth} from "../../reducers/user/selectors.js";
-import {getPromo, getMovies, getComments, getErrorMessage, getFavoriteMovies} from "../../reducers/data/selectors.js";
+import {getMovies, getComments, getErrorMessage, getFavoriteMovies} from "../../reducers/data/selectors.js";
 import {AuthorizationStatus} from "../../const";
 
 const AddReviewWrapped = withForm(AddReview);
@@ -25,7 +25,6 @@ const FullScreenVideoPlayerWrapped = withPlayer(FullScreenVideoPlayer);
 
 const App = (
     {
-      promo,
       login,
       authorizationStatus,
       avatarUrl,
@@ -49,13 +48,9 @@ const App = (
       <Switch>
         <Route exact path="/">
           <Main
-            promoFilm={promo}
             login={login}
             userBlock={<UserBlock authorizationStatus={authorizationStatus} avatarUrl={avatarUrl} />}
             genreList={<GenreList />}
-            loadFilms={loadFilms}
-            loadFavoriteFilms={loadFavoriteFilms}
-            changeStatusFilm={changeStatusFilm}
           />
         </Route>
         <Route exact path="/films/:id"
@@ -125,7 +120,6 @@ const App = (
 App.propTypes = {
   authorizationStatus: propTypes.string.isRequired,
   login: propTypes.func.isRequired,
-  promo: propTypes.object.isRequired,
   movies: propTypes.arrayOf(
       propTypes.object.isRequired
   ).isRequired,
@@ -147,7 +141,6 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
-  promo: getPromo(state),
   movies: getMovies(state),
   favoriteMovies: getFavoriteMovies(state),
   comments: getComments(state),
