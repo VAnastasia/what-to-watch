@@ -6,6 +6,9 @@ const SHOW_MOVIES_ON_CLICK = 8;
 
 const SIMILAR_MOVIES_AMOUNT = 4;
 
+const MIN_LENGTH_REVIEW = 50;
+const MAX_LENGTH_REVIEW = 50;
+
 const TabName = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
@@ -28,4 +31,6 @@ export {
   BASE_URL,
   SIMILAR_MOVIES_AMOUNT,
   AuthorizationStatus,
+  MIN_LENGTH_REVIEW,
+  MAX_LENGTH_REVIEW,
 };

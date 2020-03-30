@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import propTypes from "prop-types";
 import {Link} from "react-router-dom";
 import Movie from "../../adapters/movie";
+import {MIN_LENGTH_REVIEW, MAX_LENGTH_REVIEW} from "../../const";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -37,7 +38,7 @@ class AddReview extends PureComponent {
     const {id} = this.props.film;
 
     evt.preventDefault();
-    if (this.reviewRef.current.value.length < 50 || this.reviewRef.current.value > 400) {
+    if (this.reviewRef.current.value.length < MIN_LENGTH_REVIEW || this.reviewRef.current.value > MAX_LENGTH_REVIEW) {
       onValidateMessageChange(`Length of review must be more 50 and less 400`);
       onSendingChange(false);
     } else if (!this.formRef.current.elements.rating.value) {
