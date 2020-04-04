@@ -16,8 +16,8 @@ const withActiveCard = (Component) => {
     }
 
     handleCardHover(id) {
-      return (evt) => {
-        evt.preventDefault();
+      return () => {
+        // evt.preventDefault();
         this.timer = setTimeout(() => {
           this.setState({
             activeCard: id,

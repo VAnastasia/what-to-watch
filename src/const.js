@@ -22,6 +22,8 @@ const AuthorizationStatus = {
 
 const BASE_URL = `https://htmlacademy-react-3.appspot.com`;
 
+const noop = () => {};
+
 export {
   MAX_COUNT_GENRES,
   GENRE_DEFAULT,
@@ -33,4 +35,5 @@ export {
   AuthorizationStatus,
   MIN_LENGTH_REVIEW,
   MAX_LENGTH_REVIEW,
+  noop,
 };
