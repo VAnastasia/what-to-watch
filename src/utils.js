@@ -1,3 +1,5 @@
+import {SECONDS_IN_HOUR, MINUTES_IN_HOUR} from "./const";
+
 const RatingLevel = {
   BAD: 0,
   NORMAL: 3,
@@ -50,4 +52,15 @@ const dateFormat = new Intl.DateTimeFormat(`en-US`, {
 
 const formatDate = (date) => dateFormat.format(date);
 
-export {defineLevelFilm, fixNumber, extend, getRuntime, formatDate};
+const formatTime = (time) => {
+  const hours = Math.floor(time / SECONDS_IN_HOUR);
+  const minutes = Math.floor((time % SECONDS_IN_HOUR) / MINUTES_IN_HOUR);
+  const seconds = Math.floor(time % MINUTES_IN_HOUR);
+  return [
+    hours.toString().padStart(2, `0`),
+    minutes.toString().padStart(2, `0`),
+    seconds.toString().padStart(2, `0`)
+  ].join(`:`);
+};
+
+export {defineLevelFilm, fixNumber, extend, getRuntime, formatDate, formatTime};
