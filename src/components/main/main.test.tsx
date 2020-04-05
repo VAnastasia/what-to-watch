@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
-import * as configureStore from "redux-mock-store";
+import configureStore from "redux-mock-store";
 import {MemoryRouter} from "react-router-dom";
 import Main from "./main";
 import NameSpace from "../../reducers/name-space";

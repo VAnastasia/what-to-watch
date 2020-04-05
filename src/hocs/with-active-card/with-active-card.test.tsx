@@ -1,6 +1,7 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import withActiveCard from "./with-active-card.jsx";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import withActiveCard from "./with-active-card";
+import {noop} from "../../const";
 
 const MockComponent = () => {
   return <div></div>;
@@ -12,8 +13,8 @@ it(`withActiveCard is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       activeCard={1}
-      onMovieCardHover={() => {}}
-      onMovieCardOut={() => {}}
+      onMovieCardHover={noop}
+      onMovieCardOut={noop}
       isPlayer={true}
     />
   ), {

@@ -1,6 +1,7 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import withActiveTab from "./with-active-tab.jsx";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import withActiveTab from "./with-active-tab";
+import {noop} from "../../const";
 
 const MockComponent = () => {
   return <div></div>;
@@ -12,7 +13,7 @@ it(`withActiveTab is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
       activeTab={`Overview`}
-      onClick={() => {}}
+      onClick={noop}
     />
   ), {
     createNodeMock() {

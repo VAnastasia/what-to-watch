@@ -1,7 +1,23 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface State {
+  isSending: boolean;
+  isValid: boolean;
+  validateMessage: string;
+}
+
+interface InjectingProps {
+  onSendingChange: (value: boolean) => void;
+  onValidChange: (value: boolean) => void;
+  onValidateMessageChange: (value: string) => void;
+}
 
 const withForm = (Component) => {
-  return class WithForm extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  return class WithForm extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
       this.handleSendingChange = this.handleSendingChange.bind(this);

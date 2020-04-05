@@ -51,14 +51,14 @@ class Tabs extends React.PureComponent<TabsProps, {}> {
       <div className="movie-card__desc">
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
-            <li className={setTabClassName(activeTab, `Overview`)}>
-              <a className="movie-nav__link" onClick={() => onClick(`OVERVIEW`)}>Overview</a>
+            <li className={setTabClassName(activeTab, TabName.OVERVIEW)}>
+              <a className="movie-nav__link" onClick={() => onClick(TabName.OVERVIEW.toUpperCase())}>{TabName.OVERVIEW}</a>
             </li>
-            <li className={setTabClassName(activeTab, `Details`)}>
-              <a className="movie-nav__link" onClick={() => onClick(`DETAILS`)}>Details</a>
+            <li className={setTabClassName(activeTab, TabName.DETAILS)}>
+              <a className="movie-nav__link" onClick={() => onClick(TabName.DETAILS.toUpperCase())}>{TabName.DETAILS}</a>
             </li>
-            <li className={setTabClassName(activeTab, `Reviews`)}>
-              <a className="movie-nav__link" onClick={() => onClick(`REVIEWS`)}>Reviews</a>
+            <li className={setTabClassName(activeTab, TabName.REVIEWS)}>
+              <a className="movie-nav__link" onClick={() => onClick(TabName.REVIEWS.toUpperCase())}>{TabName.REVIEWS}</a>
             </li>
           </ul>
         </nav>

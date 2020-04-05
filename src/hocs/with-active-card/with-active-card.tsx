@@ -1,9 +1,25 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface State {
+  activeCard: number;
+}
+
+interface InjectingProps {
+  onMovieCardHover: (id: number) => void;
+  onMovieCardOut: () => void;
+  isPlayer: boolean;
+}
 
 const TIMEOUT = 1000;
 
 const withActiveCard = (Component) => {
-  return class WithActiveCard extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  return class WithActiveCard extends React.PureComponent<T, State> {
+    private timer: ReturnType<typeof setTimeout>;
+
     constructor(props) {
       super(props);
       this.handleCardHover = this.handleCardHover.bind(this);
@@ -16,14 +32,11 @@ const withActiveCard = (Component) => {
     }
 
     handleCardHover(id) {
-      return () => {
-        // evt.preventDefault();
-        this.timer = setTimeout(() => {
-          this.setState({
-            activeCard: id,
-          });
-        }, TIMEOUT);
-      };
+      this.timer = setTimeout(() => {
+        this.setState({
+          activeCard: id,
+        });
+      }, TIMEOUT);
     }
 
     handleCardOut() {

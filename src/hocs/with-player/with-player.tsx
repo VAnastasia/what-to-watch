@@ -1,22 +1,33 @@
-import React, {PureComponent, createRef} from 'react';
+import * as React from 'react';
+import {Subtract} from "utility-types";
+import {formatTime} from "../../utils";
 
-const formatTime = (time) => {
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const seconds = Math.floor(time % 60);
-  return [
-    hours.toString().padStart(2, `0`),
-    minutes.toString().padStart(2, `0`),
-    seconds.toString().padStart(2, `0`)
-  ].join(`:`);
-};
+interface State {
+  isPlaying: boolean;
+  playProgress: number;
+  duration: number;
+  currentTime: number;
+  elapsedTime: string;
+}
+
+interface InjectingProps {
+  onPlayButtonClick: () => void;
+  onFullScreenButtonClick: () => void ;
+  onLoadedMetadata: (evt: React.SyntheticEvent<EventTarget>) => void;
+  onTimeUpdate: (evt: React.SyntheticEvent<EventTarget>) => void;
+}
 
 const withPlayer = (Component) => {
-  class WithPlayer extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithPlayer extends React.PureComponent<T, State> {
+    private videoRef: React.RefObject<HTMLVideoElement>;
+
     constructor(props) {
       super(props);
 
-      this.videoRef = createRef();
+      this.videoRef = React.createRef();
 
       this.state = {
         isPlaying: false,
@@ -42,14 +53,12 @@ const withPlayer = (Component) => {
 
     handleFullScreen() {
       const video = this.videoRef.current;
-      if (video.mozRequestFullScreen) {
-        video.mozRequestFullScreen();
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitEnterFullScreen) {
+        video.webkitEnterFullScreen();
       } else if (video.requestFullscreen) {
         video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
       }
     }
 

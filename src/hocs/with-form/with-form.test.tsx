@@ -1,8 +1,7 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import withForm from "./with-form.jsx";
-
-const noop = () => {};
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import withForm from "./with-form";
+import {noop} from "../../const";
 
 const MockComponent = () => {
   return <div></div>;
