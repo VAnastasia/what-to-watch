@@ -14,9 +14,9 @@ script:
 deploy:
   provider: pages
   api_key:
-    secure: wtw
+    secure: $GITHUB_TOKEN
   skip_cleanup: true
-  github-token: wtw
+  github-token: $GITHUB_TOKEN
   local_dir: build
   on:
     branch: master
