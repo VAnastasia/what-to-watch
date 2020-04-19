@@ -13,6 +13,8 @@ script:
 
 deploy:
   provider: pages
+  api_key:
+    secure: wtw
   skip_cleanup: true
   github-token: wtw
   local_dir: build
